@@ -8,30 +8,40 @@ var generateFooter = function () {
 
 var generateScript =
     function (scripts) {
-        window.onload = function () {
+        if (Array.isArray(scripts)) {
+            var temp = 0,
+                footerScript;
 
-            if (Array.isArray(scripts)) {
-                var temp = 0,
-                    footerScript;
-
-                while (scripts[temp]) {
-                    footerScript = document.createElement('script');
-                    footerScript.src = scripts[temp];
-                    footerScript.type = 'text/javascript';
-                    document.body.appendChild(footerScript);
-                    temp++;
-                }
+            while (scripts[temp]) {
+                footerScript = document.createElement('script');
+                footerScript.src = scripts[temp];
+                footerScript.type = 'text/javascript';
+                document.body.appendChild(footerScript);
+                footerScript.addEventListener("load", scriptLoaded(scripts[temp]), false);
+                temp++;
             }
-
         }
 
     }
+
+
+
+function scriptLoaded(name) {
+    console.log(name + " is loaded");
+
+}
 var scripts = ['/assets/js/popper.min.js',
- '/assets/js/bootstrap.min.js', '/assets/js/android.js'];
+ '/assets/js/bootstrap.min.js', '/assets/js/pos-api/genericApi.js'];
 //var scripts = ['/assets/js/popper.min.js', '/assets/js/bootstrap.min.js'];
-
-
 generateFooter();
 generateScript(scripts);
+
+window.addEventListener('load', function () {
+    alert("It's loaded!")
+    var scriptss = ['/assets/js/pos-api/supplier/supplier.js'];
+    generateScript(scriptss);
+})
+
+
 
 //getCss2('../assets/css/bootstrap.min.css');

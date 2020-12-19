@@ -27,6 +27,8 @@
 
 
 
+
+
         <form id="supplierAddForm" class="row g-3 needs-validation">
             <div class="row g-2 mb-2">
                 <div class="col-md">
@@ -111,14 +113,24 @@
                 </div>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto mb-3">
-                <a onclick="validation();" class="btn btn-primary shadow mt-3"><i class="fas fa-save mr-2"></i>Add</a>
+                <a onclick="validateForm();" class="btn btn-primary shadow mt-3"><i class="fas fa-save mr-2"></i>Add</a>
             </div>
 
 
         </form>
 
     </div>
-    <script src="/assets/js/supplier/supplier.js"></script>
+    <div class="toast-container position-absolute p-3 bottom-0 start-50 translate-middle-x" id="toastPlacement" data-original-class="toast-container position-absolute p-3">
+        <div id="myToast" class="toast fade d-flex align-items-center bg-danger text-white show">
+            <div id="myToastBody" class="toast-body"></div>
+        </div>
+    </div>
+    <div class="bd-example">
+        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-original-title="" title="">
+            Popover on top
+        </button>
+    </div>
+
     <script src="/assets/js/footer.js"></script>
 
 
