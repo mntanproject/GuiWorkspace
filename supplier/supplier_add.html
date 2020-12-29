@@ -10,7 +10,7 @@
     <script src="/assets/js/init-page.js"></script>
 </head>
 
-<body class="bg-my-light vh-100 d-flex flex-column">
+<body id="body" class="bg-my-light vh-100 d-flex flex-column">
 
     <script src="/assets/js/header.js"></script>
 
@@ -112,27 +112,31 @@
                     </div>
                 </div>
             </div>
-            <div class="d-grid gap-2 col-6 mx-auto mb-3">
-                <a onclick="validateForm();" class="btn btn-primary shadow mt-3"><i class="fas fa-save mr-2"></i>Add</a>
-            </div>
 
+            <div class="d-grid gap-2 col-6 mx-auto mt-0 mb-3">
+                <a id="btnAdd" onclick="validateForm();" class="btn btn-primary shadow mt-3"><i class="fas fa-save mr-2"></i>Add</a>
+            </div>
+            <div class="d-flex justify-content-center p-0 m-0">
+                <div id="myToast" class="toast d-flex align-items-center  bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div id="myToastBody" class="toast-body"></div>
+                    <button type="button" class="btn-close btn-close-white ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
 
         </form>
 
     </div>
-    <div class="toast-container position-absolute p-3 bottom-0 start-50 translate-middle-x" id="toastPlacement" data-original-class="toast-container position-absolute p-3">
-        <div id="myToast" class="toast fade d-flex align-items-center bg-danger text-white show">
-            <div id="myToastBody" class="toast-body"></div>
-        </div>
-    </div>
-    <div class="bd-example">
-        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-original-title="" title="">
-            Popover on top
-        </button>
-    </div>
+
 
     <script src="/assets/js/footer.js"></script>
+    <script>
+        window.addEventListener('load', function() {
 
+            var supplierScript = ['/assets/js/pos-api/supplier/supplier.add.js'];
+            generateScript(supplierScript);
+        })
+
+    </script>
 
 
 </body>

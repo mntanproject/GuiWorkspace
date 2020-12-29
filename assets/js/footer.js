@@ -17,7 +17,8 @@ var generateScript =
                 footerScript.src = scripts[temp];
                 footerScript.type = 'text/javascript';
                 document.body.appendChild(footerScript);
-                footerScript.addEventListener("load", scriptLoaded(scripts[temp]), false);
+                //footerScript.addEventListener("load", scriptLoaded(scripts[temp]), false);
+                //alert(scripts[temp]);
                 temp++;
             }
         }
@@ -25,22 +26,18 @@ var generateScript =
     }
 
 
-
-function scriptLoaded(name) {
-    console.log(name + " is loaded");
-
-}
+//
+//function scriptLoaded(name) {
+//    console.log(name + " is loaded");
+//
+//}
 var scripts = ['/assets/js/popper.min.js',
  '/assets/js/bootstrap.min.js', '/assets/js/pos-api/genericApi.js'];
 //var scripts = ['/assets/js/popper.min.js', '/assets/js/bootstrap.min.js'];
 generateFooter();
 generateScript(scripts);
 
-window.addEventListener('load', function () {
-    alert("It's loaded!")
-    var scriptss = ['/assets/js/pos-api/supplier/supplier.js'];
-    generateScript(scriptss);
-})
+
 
 
 

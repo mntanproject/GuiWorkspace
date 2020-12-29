@@ -2,6 +2,10 @@ body {
     padding-top: 4.5rem;
 }
 
+.text-left {
+    text-align: left;
+}
+
 .bg-my-light {
     background-color: #fafafa;
 }

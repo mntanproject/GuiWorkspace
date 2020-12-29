@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/assets/images/favicon.ico">
+    <script src="/assets/js/init-page.js"></script>
+</head>
+
+<body class="bg-my-light vh-100 d-flex flex-column">
+
+    <script src="/assets/js/header.js"></script>
+
+    <div class="container">
+
+        <!-- page content -->
+
+        <nav aria-label="breadcrumb text-dark">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="supplier_home.html" class="text-dark"><i class="fas fa-people-carry mr-2 mt-1"></i>Supplier</a></li>
+                <li class="breadcrumb-item active" aria-current="page">View</li>
+            </ol>
+        </nav>
+
+        <div class="input-group mb-3">
+            <a class="btn btn-primary" type="button" href="supplier_add.html"><i class="fas fa-plus-circle"></i></a>
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+            <button class="btn btn-primary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+
+        </div>
+
+
+
+        <!-- paginator -->
+        <div class="d-flex-fluid" style="width:100%;">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- end paginator -->
+
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item bg-primary bg-gradient text-white d-none d-sm-none d-md-block">
+                <div class="accordion-header" id="flush-heading">
+
+                    <div class="container-fluid p-3">
+                        <div class="row">
+
+                            <div class="col-md-4 text-center h6">Company</div>
+                            <div class="col-md-4 text-center h6">Sales</div>
+                            <div class="col-md-4 text-center h6">City</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" id="flush-headingOne">
+                    <a class="accordion-button collapsed btn" data-bs-toggle="collapse" href="#flush-collapseOne" role="button" aria-expanded="false" aria-controls="#flush-collapseOne" style="border-top: none;">
+                        <div class="container-fluid p-0 m-0">
+                            <dl class="row m-0">
+                                <dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Company</dt>
+                                <dd class="col-9 col-md-4 text-left border-right-md">Nippon Paint</dd>
+                                <dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Sales</dt>
+                                <dd class="col-9 col-md-4 text-left border-right-md">Asikama luma</dd>
+                                <dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">City</dt>
+                                <dd class="col-9 col-md-4 text-left">Surabaya</dd>
+                            </dl>
+                        </div>
+
+                    </a>
+
+                </div>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body bg-light">
+                        <div class="container-fluid">
+                            <dl class="row">
+                                <dt class="col-2 small pt-01">Contact</dt>
+                                <dd class="col-10">+091222333</dd>
+                                <dt class="col-2 small pt-01">Email</dt>
+                                <dd class="col-10">Asika@nippon.co.id</dd>
+                                <dt class="col-2 small pt-01">Street</dt>
+                                <dd class="col-10">Jalan Sumatra</dd>
+                                <dt class="col-2 small pt-01">City</dt>
+                                <dd class="col-10">Surabaya</dd>
+                                <dt class="col-2 small pt-01">State</dt>
+                                <dd class="col-10">Jawa barat</dd>
+                                <dt class="col-2 small pt-01">Country&nbsp;</dt>
+                                <dd class="col-10">Indonesia</dd>
+                                <dt class="col-2 small pt-01">Bank</dt>
+                                <dd class="col-10">BCA 3902239999 Atas nama tkelia</dd>
+                                <dt class="col-2 small pt-01">Note</dt>
+                                <dd class="col-10">Transfer dulu nanti barang baru sampai ke indonesia</dd>
+                            </dl>
+                            <div class="d-flex flex-row-reverse bd-highlight">
+                                <button class="btn btn-primary mr-1" type="button" id="button-addon2"><i class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-primary ml-1 mr-1" type="button" id="button-addon3"><i class="fas fa-pencil-alt"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <a class="accordion-button collapsed btn" data-bs-toggle="collapse" href="#flush-collapseTwo" role="button" aria-expanded="false" aria-controls="#flush-collapseTwo">
+
+                        <div class="container-fluid p-0 m-0">
+                            <dl class="row m-0">
+                                <dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Company</dt>
+                                <dd class="col-9 col-md-4 text-left border-right-md">Tekiro</dd>
+                                <dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Sales</dt>
+                                <dd class="col-9 col-md-4 text-left border-right-md">Casey Say</dd>
+                                <dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">City</dt>
+                                <dd class="col-9 col-md-4 text-left">Medan</dd>
+                            </dl>
+                        </div>
+
+                    </a>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="container-fluid">
+                            <dl class="row">
+                                <dt class="col-2 small pt-01">Contact</dt>
+                                <dd class="col-10">+62 8127717772222</dd>
+                                <dt class="col-2 small pt-01">Email</dt>
+                                <dd class="col-10">Casey.cay@tekiro.com</dd>
+                                <dt class="col-2 small pt-01">Street</dt>
+                                <dd class="col-10">Jln raya dua tiga</dd>
+                                <dt class="col-2 small pt-01">City</dt>
+                                <dd class="col-10">Medan</dd>
+                                <dt class="col-2 small pt-01">State</dt>
+                                <dd class="col-10">Sumatera barat</dd>
+                                <dt class="col-2 small pt-01">Country</dt>
+                                <dd class="col-10">Indonesia</dd>
+                                <dt class="col-2 small pt-01">Bank</dt>
+                                <dd class="col-10">BNI 8902239999 Atas nama tekiro</dd>
+                                <dt class="col-2 small pt-01">Note</dt>
+                                <dd class="col-10">Transfer 2 bulan setelah barang diterima, kalau tidak di blacklist baru sampai ke indonesia</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <a class="accordion-button collapsed btn" data-bs-toggle="collapse" href="#flush-collapseThree" role="button" aria-expanded="false" aria-controls="#flush-collapseThree">
+
+                        <div class="container-fluid p-0 m-0">
+                            <dl class="row m-0">
+                                <dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Company</dt>
+                                <dd class="col-9 col-md-4 text-left border-right-md">PT. Pantene</dd>
+                                <dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Sales</dt>
+                                <dd class="col-9 col-md-4 text-left border-right-md">Mark Tan</dd>
+                                <dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">City</dt>
+                                <dd class="col-9 col-md-4 text-left">Jakarta</dd>
+                            </dl>
+                        </div>
+                    </a>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="container-fluid">
+                            <dl class="row">
+                                <dt class="col-2 small pt-01">Contact</dt>
+                                <dd class="col-10">+62 8134447772222</dd>
+                                <dt class="col-2 small pt-01">Email</dt>
+                                <dd class="col-10">marktan@gmail.com</dd>
+                                <dt class="col-2 small pt-01">Street</dt>
+                                <dd class="col-10">Jln mangga satu</dd>
+                                <dt class="col-2 small pt-01">City</dt>
+                                <dd class="col-10">Bandung</dd>
+                                <dt class="col-2 small pt-01">State</dt>
+                                <dd class="col-10">Jawa tengah</dd>
+                                <dt class="col-2 small pt-01">Country</dt>
+                                <dd class="col-10">Indonesia</dd>
+                                <dt class="col-2 small pt-01">Bank</dt>
+                                <dd class="col-10">BRI 33339999 Atas nama tekiro</dd>
+                                <dt class="col-2 small pt-01">Note</dt>
+                                <dd class="col-10">Transfer 2 bulan setelah barang diterima, kalau tidak di blacklist baru sampai ke indonesia</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- paginator -->
+        <div class="d-flex-fluid mt-3" style="width:100%;">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- end paginator -->
+
+
+    </div>
+
+
+
+    <script src="/assets/js/footer.js"></script>
+
+
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 async function mnMakeRequest(data, url, method) {
     var added = false;
-    fetch(url, {
+    await fetch(url, {
         method: method,
         body: JSON.stringify(data)
     }).then(function (response) {
@@ -11,6 +11,7 @@ async function mnMakeRequest(data, url, method) {
         console.log('error fetch: ' + error);
         return false;
     });
+
     return added;
 }
 

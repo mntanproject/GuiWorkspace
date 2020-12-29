@@ -1,83 +1,3 @@
-document.querySelectorAll('[data-bs-toggle="popover"]')
-    .forEach(function (popover) {
-        new bootstrap.Popover(popover)
-    })
-
-function validateForm() {
-    var forms = document.querySelectorAll('.needs-validation');
-    forms.forEach(function (form) {
-        if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-            form.classList.add('was-validated')
-
-        } else {
-            var mnCompany = document.getElementById("company").value;
-            var mnName = document.getElementById("name").value;
-            document.getElementById('myModalBody').innerHTML = '<p class="text-center">Save ' + mnCompany + ', ' + mnName + ' as supplier?</p>';
-            document.getElementById('myModalTitle').innerHTML = '<i class="fas fa-people-carry mr-2"></i>Supplier'
-            showModal();
-
-        }
-    })
-
-}
-
-
-var btnModalYes = document.getElementById('btnModalYes');
-btnModalYes.onclick = function () {
-    addSupplier();
-};
-
-function hideModal() {
-    var modalElement = document.getElementById('myModal');
-    var modalInstance = mnGetModalInstance(modalElement);
-    modalInstance.hide();
-}
-
-function showModal() {
-    var modalElement = document.getElementById('myModal');
-    var modalOption;
-    var modalInstance = mnGenerateModal(modalElement, modalOption);
-    modalInstance.show();
-}
-
-async function addSupplier() {
-    hideModal();
-
-    var mnCompany = document.getElementById("company").value;
-    var mnName = document.getElementById("name").value;
-    var mnContact = document.getElementById("contactno").value;
-    var mnEmail = document.getElementById("email").value;
-    var mnStreet = document.getElementById("street").value;
-    var mnCity = document.getElementById("city").value;
-    var mnState = document.getElementById("state").value;
-    var mnCountry = document.getElementById("country").value;
-    var mnBank = document.getElementById("bank").value;
-    var mnNotes = document.getElementById("notes").value;
-
-    var supp = new MnSupplier(mnCompany, mnName, mnContact, mnEmail, mnStreet, mnCity, mnState, mnCountry, mnBank, mnNotes);
-
-
-    var isAdded = await mnMakeRequest(supp, 'http://localhost:9000/api/supplier/add/', 'POST');
-    if (isAdded) {
-        document.location.href('supplier_home.html')
-    } else {
-        var option = {
-            delay: 10000
-        };
-        var toastEl = document.getElementById('myToast');
-        document.getElementById('myToastBody').innerHTML = 'Error while adding supplier.'
-        var myToast = new bootstrap.Toast(toastEl, option);
-        myToast.show();
-    }
-
-}
-
-async function makeAddSupplierRequest() {
-
-}
-
 function MnSupplier(mnCompany, mnName, mnContact, mnEmail, mnStreet, mnCity, mnState, mnCountry, mnBank, mnNotes) {
     this.company = mnCompany;
     this.name = mnName;
@@ -90,3 +10,10 @@ function MnSupplier(mnCompany, mnName, mnContact, mnEmail, mnStreet, mnCity, mnS
     this.bank = mnBank;
     this.notes = mnNotes;
 }
+
+MnSupplier.fromJson = function (json) {
+    console.log('MnSupplier.fromJson' + json)
+    var obj = json; //JSON.parse(json);
+    var supp = new MnSupplier(obj.company, obj.name, obj.contact, obj.email, obj.street, obj.city, obj.state, obj.country, obj.bank, obj.notes);
+    return supp;
+};
