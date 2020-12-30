@@ -1,19 +1,16 @@
 'use strict';
 
 
-function MnPagination(full_data_size, rows_per_page, current_page, pagination_max_page, wrapper_id, display_callback) {
+function MnPagination(full_data_size, rows_per_page, current_page, pagination_max_page, wrapper_id, order_page, descending_page, display_callback) {
 
     this.rowsPerPage = rows_per_page
     this.currentPage = current_page
     this.size = full_data_size
-
     this.maxPage = pagination_max_page
     this.wrapper = document.getElementById(wrapper_id)
-
+    this.order = order_page
+    this.descending = descending_page
     this.displayCallback = display_callback
-
-
-
 }
 
 var generatePagination = function (paginationObj) {
@@ -87,7 +84,7 @@ function createPaginationButton(paginationObj, linkInnerHTML, btnClassName) {
     paginationObj.wrapper.appendChild(btn)
     if (!btn.className.includes("disabled")) {
         btn.addEventListener('click', function () {
-            document.querySelectorAll('.page-item').forEach(e => e.remove());
+            document.querySelectorAll('ul.pagination li.page-item').forEach(e => e.remove());
             if (Number.isInteger(linkInnerHTML)) {
                 paginationObj.currentPage = linkInnerHTML
             } else {
@@ -101,9 +98,11 @@ function createPaginationButton(paginationObj, linkInnerHTML, btnClassName) {
             }
 
             generatePagination(paginationObj);
-            let offset = paginationObj.currentPage
+            let offset = (paginationObj.currentPage - 1) * paginationObj.rowsPerPage
             let limit = paginationObj.rowsPerPage
-            paginationObj.displayCallback(offset, limit);
+            let order = paginationObj.order
+            let descending = paginationObj.descending
+            paginationObj.displayCallback(offset, limit, order, descending);
             //
             //            document.querySelectorAll('.page-item').forEach(e => e.remove());
             //            //let current_btn = document.querySelector('.pagination li.active');

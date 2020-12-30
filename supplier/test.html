@@ -17,59 +17,18 @@
 <body>
 
 
-    <div class="bd-highlight">
-        <div class="input-group ml-3 justify-content-center">
-            <span class="p-2">Rows</span>
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn-outline-primary" for="btnradio1">5</label>
-
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio2">10</label>
-
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                <label class="btn btn-outline-primary" for="btnradio3">100</label>
-            </div>
-        </div>
-    </div>
-
-    <div class="d-sm-flex flex-sm-row justify-content-center mt-3" style="width: 100%">
-
-
-        <div class="bd-highlight">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination pagination-sm justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-
-        <div class="bd-highlight">
-            <div class="input-group mr-3 justify-content-center">
-                <span class="p-2 small">1-10 of 50 records</span>
-            </div>
-        </div>
-
-    </div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Toggle button</button>
+    <button type="button" class="btn btn-primary active" data-bs-toggle="button" autocomplete="off" aria-pressed="true">Active toggle button</button>
+    <button type="button" class="btn btn-primary" disabled data-bs-toggle="button" autocomplete="off">Disabled toggle button</button>
 
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script>
+        var buttons = document.querySelectorAll('.btn')
+        buttons.forEach(function(button) {
+            var button = new bootstrap.Button(button)
+            button.toggle()
+        })
     </script>
 
-</body>
-
-</html>
+</body></html>

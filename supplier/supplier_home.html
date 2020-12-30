@@ -40,13 +40,13 @@
         <div class="d-flex justify-content-end mb-3">
 
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked onclick="refreshPage(5)">
+                <input type="radio" class="btn-check" name="btnradiorows" id="btnradio1" autocomplete="off" checked onclick="refreshPage()" value="5">
                 <label class="btn btn-outline-primary" for="btnradio1">5</label>
 
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" onclick="refreshPage(10)">
+                <input type="radio" class="btn-check" name="btnradiorows" id="btnradio2" autocomplete="off" onclick="refreshPage()" value="10">
                 <label class="btn btn-outline-primary" for="btnradio2">10</label>
 
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" onclick="refreshPage(100)">
+                <input type="radio" class="btn-check" name="btnradiorows" id="btnradio3" autocomplete="off" onclick="refreshPage()" value="100">
                 <label class="btn btn-outline-primary" for="btnradio3">100</label>
             </div>
 
@@ -60,8 +60,8 @@
 
                     <div class="container-fluid p-3">
                         <div class="row">
-
-                            <div class="col-md-4 text-center h6">Company</div>
+                            <div class="col-md-1 text-center h6">id <span class="badge rounded-pill bg-primary"><i class="fas fa-sort"></i></span></div>
+                            <div class="col-md-3 text-center h6">Company</div>
                             <div class="col-md-4 text-center h6">Sales</div>
                             <div class="col-md-4 text-center h6">City</div>
                         </div>
