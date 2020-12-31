@@ -1,9 +1,9 @@
 'use strict';
 
-function getPagination(url, paginationObj, mnCallback) {
+function getPagination(url, mnCallback) {
     fetch(url)
         .then(response => response.json())
-        .then(result => mnCallback(result, paginationObj));
+        .then(result => mnCallback(result));
 }
 
 
@@ -27,41 +27,54 @@ var displayData = function (offset, limit, order, descending) {
     getData(url + 'offset=' + offset + '&limit=' + limit + '&order=' + order + '&descending=' + descending, generateSupplierHtml)
 }
 
-function sort() {
-    var url = 'http://localhost:9000/api/supplier/size/all'
+
+//function refreshPage() {
+//    document.querySelectorAll('ul.pagination li.page-item').forEach(e => e.remove());
+//    getPagination('http://localhost:9000/api/supplier/size/all', supplierHome)
+//}
+//
+//function sort(from) {
+//    switch (from) {
+//        case ("id"):
+//            break;
+//        case ("name"):
+//            break;
+//            //var pagination = new MnPagination(data.totalsize, numRows, 1, 3, 'paginatorTop', 'id', '1', displayData)
+//        default:
+//            // code block
+//    }
+//
+//}
+function sortCallback(paginationObj) {
+
     var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
-    var pagination = new MnPagination(0, numRows, 1, 3, 'paginatorTop', 'id', '0', displayData)
-
-    getPagination(url, pagination, init)
-
-}
-
-function noRowsChanged() {
-
-    var url = 'http://localhost:9000/api/supplier/size/all'
-    var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
-    var pagination = new MnPagination(0, numRows, 1, 3, 'paginatorTop', 'id', '', displayData)
-
-    getPagination(url, pagination, init)
-
-
-}
-
-
-function init(data, pagination) {
-    pagination.size = data.length
-    var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
-    var pagination = new MnPagination(data.totalsize, numRows, 1, 3, 'paginatorTop', pagination.order, pagination.descending, displayData)
-    document.querySelectorAll('ul.pagination li.page-item').forEach(e => e.remove());
+    //var pagination = new MnPagination(data.totalsize, numRows, 1, 3, 'paginatorTop', 'id', '1', displayData)
+    var pagination = paginationObj
     generatePagination(pagination)
     let offset = (pagination.currentPage - 1) * pagination.rowsPerPage
     let limit = pagination.rowsPerPage
     let order = pagination.order
     let descending = pagination.descending
     displayData(offset, limit, order, descending)
+
 }
 
+function supplierHome(data) {
 
+    var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
+    var pagination = new MnPagination(data.totalsize, numRows, 1, 3, 'paginatorTop', 'id', '1', displayData)
+    generatePagination(pagination)
+    let offset = (pagination.currentPage - 1) * pagination.rowsPerPage
+    let limit = pagination.rowsPerPage
+    let order = pagination.order
+    let descending = pagination.descending
+    displayData(offset, limit, order, descending)
+
+}
+
+function supplierData(paginationObj, url) {
+    getData(url + 'offset=' + paginationObj.currentPage + '&limit=' + paginationObj.rowsPerPage, generateSupplierHtml)
+}
 
 function generateSupplierHtml(item, index) {
     var supp = MnSupplier.fromJson(item);
@@ -116,8 +129,4 @@ function generateSupplierHtml(item, index) {
 
 }
 
-var url = 'http://localhost:9000/api/supplier/size/all'
-var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
-var pagination = new MnPagination(0, numRows, 1, 3, 'paginatorTop', 'id', '1', displayData)
-
-getPagination(url, pagination, init)
+getPagination('http://localhost:9000/api/supplier/size/all', supplierHome)
