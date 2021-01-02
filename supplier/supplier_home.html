@@ -18,6 +18,30 @@
 
         <!-- page content -->
 
+        <style>
+            #sort-order>i {
+                display: none;
+            }
+
+            .sortable {
+                cursor: pointer;
+            }
+
+            .sortable:after {
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                content: "\f160";
+                float: right;
+                color: #ccc;
+
+            }
+
+            .sortable.current {
+
+                color: blue;
+            }
+
+        </style>
 
 
         <nav aria-label="breadcrumb text-dark">
@@ -60,21 +84,18 @@
 
                     <div class="container-fluid p-3">
                         <div class="row">
-                            <div class="col-md-1">
-                                <input type="radio" class="btn-check" name="btnradiosort" id="btnradiosort1" autocomplete="off" checked value="5" onclick="sort()">
-                                <label class="btn btn-primary" for="btnradiosort1">Id</label>
+                            <div class="col-md-1 sortable">
+                                <div class="current">Id</div>
+
                             </div>
                             <div class="col-md-3">
-                                <input type="radio" class="btn-check" name="btnradiosort" id="btnradiosort2" autocomplete="off" value="10">
-                                <label class="btn btn-primary" for="btnradiosort2">Company</label>
+                                Company <span class="sortable"></span>
                             </div>
-                            <div class="col-md-4">
-                                <input type="radio" class="btn-check" name="btnradiosort" id="btnradiosort3" autocomplete="off" value="10">
-                                <label class="btn btn-primary" for="btnradiosort3">Sales</label>
+                            <div class="col-md-4 sortable">
+                                Sales
                             </div>
-                            <div class="col-md-4">
-                                <input type="radio" class="btn-check" name="btnradiosort" id="btnradiosort4" autocomplete="off" value="10">
-                                <label class="btn btn-primary" for="btnradiosort4">City</label>
+                            <div class="col-md-4 sortable">
+                                City
                             </div>
                         </div>
                     </div>

@@ -16,42 +16,98 @@
 
 <body>
 
+    <div class="container">
+        <h2 class="page-header">Bootstrap Table with Sort Indicators</h2>
 
-    <div class="container-fluid p-3">
-        <div class="row">
-            <div class="col-md-1">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <input type="radio" class="btn-check" name="btnradiosort" id="btnradiosort3" autocomplete="off" value="10">
-                <label class="btn btn-primary" for="btnradiosort3">Sales</label>
-            </div>
-            <div class="col-md-4">
-                <input type="radio" class="btn-check" name="btnradiosort" id="btnradiosort4" autocomplete="off" value="10">
-                <label class="btn btn-primary" for="btnradiosort4">City</label>
-            </div>
-        </div>
+        <table class="table table-bordered table-sortable">
+            <caption>
+                <code>table.table-sortable</code>
+            </caption>
+            <thead>
+                <tr>
+                    <th class="asc">#</th>
+                    <th class="desc">Field 1</th>
+                    <th>Field 2</th>
+                    <th>Field 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Data 1</td>
+                    <td>John</td>
+                    <td>2020-01-24</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Data 2</td>
+                    <td>Andrew</td>
+                    <td>2020-01-22</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Data 3</td>
+                    <td>Laura</td>
+                    <td>2020-01-20</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <script src="/assets/js/popper.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script>
-        var buttons = document.querySelectorAll('.btn')
-        buttons.forEach(function(button) {
-            var button = new bootstrap.Button(button)
-            button.toggle()
-        })
 
-    </script>
+    <style>
+        h2.page-header {
+            margin-top: 0px;
+            padding-top: 0px;
+            line-height: 15px;
+            vertical-align: middle;
+        }
 
+        .table-sortable>thead>tr>th {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .table-sortable>thead>tr>th:after,
+        .table-sortable>thead>tr>th:after,
+        .table-sortable>thead>tr>th:after {
+            content: ' ';
+            position: absolute;
+            height: 0;
+            width: 0;
+            right: 10px;
+            top: 16px;
+        }
+
+        .table-sortable>thead>tr>th:after {
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #ccc;
+            border-bottom: 0px solid transparent;
+        }
+
+        .table-sortable>thead>tr>th:hover:after {
+            border-top: 5px solid #888;
+        }
+
+        .table-sortable>thead>tr>th.asc:after {
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 0px solid transparent;
+            border-bottom: 5px solid #333;
+        }
+
+        .table-sortable>thead>tr>th.asc:hover:after {
+            border-bottom: 5px solid #888;
+        }
+
+        .table-sortable>thead>tr>th.desc:after {
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #333;
+            border-bottom: 5px solid transparent;
+        }
+
+    </style>
 </body>
 
 </html>
