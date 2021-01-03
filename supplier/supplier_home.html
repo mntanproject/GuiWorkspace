@@ -36,8 +36,11 @@
 
             }
 
-            .sortable.current {
+            .sortable.desc:after {
+                color: #fff;
+            }
 
+            .sortable.asc:after {
                 color: blue;
             }
 
@@ -84,17 +87,16 @@
 
                     <div class="container-fluid p-3">
                         <div class="row">
-                            <div class="col-md-1 sortable">
-                                <div class="current">Id</div>
-
+                            <div id="id" class="col-md-1 sortable desc">
+                                Id
                             </div>
-                            <div class="col-md-3">
-                                Company <span class="sortable"></span>
+                            <div id="company" class="col-md-3 sortable">
+                                Company
                             </div>
-                            <div class="col-md-4 sortable">
+                            <div id="name" class="col-md-4 sortable">
                                 Sales
                             </div>
-                            <div class="col-md-4 sortable">
+                            <div id="city" class="col-md-4 sortable">
                                 City
                             </div>
                         </div>

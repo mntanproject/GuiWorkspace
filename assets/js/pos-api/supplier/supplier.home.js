@@ -8,6 +8,54 @@ function getPagination(url, paginationObj, mnCallback) {
 
 
 
+//const sortOrder = document.getElementById('suppId')
+var sortables = document.getElementsByClassName("sortable");
+for (var i = 0; i < sortables.length; i++) {
+    //alert(sortables[i].id)
+    sortables[i].addEventListener('click', changeOrder)
+}
+
+function changeOrder(evt) {
+    let from = this.id
+    var url = 'http://localhost:9000/api/supplier/size/all'
+    var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
+    var pagination = new MnPagination(0, numRows, 1, 3, 'paginatorTop', 'id', '1', displayData);
+    var desc = 0;
+
+
+    if (this.classList.contains('asc')) {
+        this.classList.remove('asc')
+        this.classList.add('desc')
+        desc = 1
+    } else if (this.classList.contains('desc')) {
+        this.classList.remove('desc')
+        this.classList.add('asc')
+        desc = 0
+    } else {
+        this.classList.add('asc')
+    }
+
+    for (var i = 0; i < sortables.length; i++) {
+        if (sortables[i].id != from) {
+            sortables[i].classList.remove('desc')
+            sortables[i].classList.remove('asc')
+
+        }
+    }
+
+    pagination = new MnPagination(0, numRows, 1, 3, 'paginatorTop', from, desc, displayData)
+
+    getPagination(url, pagination, init)
+
+
+}
+
+
+//1e => e.addEventListener('click', changeOrder))
+
+
+
+
 async function getData(url, mnCallback) {
     await fetch(url, {
         method: 'Get'
