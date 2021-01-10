@@ -5,3 +5,4 @@ function showAndroidToast(toast) {
 function startServer() {
     Android.startServer();
 }
+

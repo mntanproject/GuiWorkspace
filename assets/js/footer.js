@@ -32,7 +32,7 @@ var generateScript =
 //
 //}
 var scripts = ['/assets/js/popper.min.js',
- '/assets/js/bootstrap.min.js', '/assets/js/pos-api/genericApi.js'];
+ '/assets/js/bootstrap.min.js', '/assets/js/sweetalert2.all.min.js', '/assets/js/pos-api/genericApi.js'];
 //var scripts = ['/assets/js/popper.min.js', '/assets/js/bootstrap.min.js'];
 generateFooter();
 generateScript(scripts);
