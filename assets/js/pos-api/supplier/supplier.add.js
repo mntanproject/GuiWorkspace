@@ -50,7 +50,7 @@ function validateForm() {
                 showLoaderOnConfirm: true,
                 preConfirm: () => {
                     console.log('fetching:' + supplierObj.company)
-                    return fetch('http://localhost:9000/api/supplier/add/', {
+                    return fetch(MnSupplier.addUrl, {
                             method: 'POST',
                             body: JSON.stringify(supplierObj)
                         })

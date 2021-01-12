@@ -8,7 +8,7 @@ console.log(suppId);
 
 var supplierObj;
 
-fetch('http://localhost:9000/api/supplier/view/id=' + suppId)
+fetch(MnSupplier.viewUrl + 'id=' + suppId)
     .then(res => res.json())
     .then(data => supplierObj = MnSupplier.fromJson(data))
     .then(() => displayExistingData())
@@ -59,7 +59,7 @@ function validateForm() {
                 preConfirm: () => {
                     setEditedData()
                     console.log('fetching:' + supplierObj.company)
-                    return fetch('http://localhost:9000/api/supplier/edit/id=' + supplierObj.id, {
+                    return fetch(MnSupplier.editUrl + 'id=' + supplierObj.id, {
                             method: 'POST',
                             body: JSON.stringify(supplierObj)
                         })

@@ -10,7 +10,7 @@
     <script>
         const absolutePath = 'file:///android_asset/gui'
         const appendAbsolutePath = 0
-
+        const serverUrl = 'http://localhost:9000/'
     </script>
     <script src="/assets/js/init-page.js"></script>
 </head>
@@ -55,7 +55,6 @@
                 float: right;
                 color: #fff;
             }
-
         </style>
 
 
@@ -68,8 +67,8 @@
 
         <div class="input-group mb-3">
             <a class="btn btn-primary" type="button" href="supplier_add.html"><i class="fas fa-plus-circle"></i></a>
-            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
-            <button class="btn btn-primary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+            <input id="search" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+            <button onclick="search()" class="btn btn-primary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
 
         </div>
 
@@ -149,16 +148,12 @@
 
     <script>
         window.addEventListener('load', function() {
-
             var supplierScript = ['/assets/js/pos-api/supplier/supplier.js', '/assets/js/pos-api/pagination.js', '/assets/js/pos-api/supplier/supplier.home.js'];
             generateScript(supplierScript);
         })
-
     </script>
 
 
 
 
-</body>
-
-</html>
+</body></html>
