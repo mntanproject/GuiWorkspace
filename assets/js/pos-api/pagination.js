@@ -10,6 +10,7 @@ function MnPagination(full_data_size, rows_per_page, current_page, pagination_ma
     this.wrapper = document.getElementById(wrapper_id)
     this.order = order_page
     this.descending = descending_page
+    this.paginationUrl = ''
     this.displayCallback = display_callback
 }
 

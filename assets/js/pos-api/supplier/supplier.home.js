@@ -12,7 +12,11 @@ async function getData(url, mnCallback) {
     }).then(function (response) {
         return response.json()
     }).then(function (result) {
-        result.forEach(mnCallback);
+        if (result.length == 0) {
+            emptyMessage()
+        } else {
+            result.forEach(mnCallback);
+        }
     }).catch(function (error) {
         alert('error get data supplier_home.js' + error)
     });
@@ -20,8 +24,14 @@ async function getData(url, mnCallback) {
 
 var displayData = function (offset, limit, order, descending) {
     document.querySelectorAll('.supplier-data').forEach(e => e.remove());
+
     let url = MnSupplier.paginatorUrl
-    getData(url + 'offset=' + offset + '&limit=' + limit + '&order=' + order + '&descending=' + descending, generateSupplierHtml)
+    let searchTerm = document.getElementById('search').value
+    url = url + 'offset=' + offset + '&limit=' + limit + '&order=' + order + '&descending=' + descending
+    if (searchTerm != '') {
+        url = url + '&search=' + searchTerm
+    }
+    getData(url, generateSupplierHtml)
 }
 
 function init(data, pagination) {
@@ -36,9 +46,31 @@ function init(data, pagination) {
     displayData(offset, limit, order, descending)
 }
 
+function emptyMessage() {
+    var wrapper = document.getElementById('accordionFlushExample')
+    var accItem = document.createElement("div");
+    var accHeader = document.createElement('div');
+    var accHeaderLink = document.createElement('a');
+    var accCollapse = document.createElement('div');
+    var accCollapseItem = document.createElement('div');
+
+    accItem.className = 'accordion-item supplier-data'
+    accHeaderLink.id = 'flush-heading-empty'
+    accHeaderLink.setAttribute('role', 'button')
+    accHeaderLink.setAttribute('aria-expanded', 'false')
+    accHeaderLink.innerHTML = '<div class="d-flex justify-content-center pt-1">No Record Found</div>'
+
+    accHeader.appendChild(accHeaderLink)
+    accItem.appendChild(accHeader)
+    accItem.appendChild(accCollapse)
+    wrapper.appendChild(accItem)
+
+
+}
 
 
 function generateSupplierHtml(item, index) {
+
     var supp = MnSupplier.fromJson(item);
     var wrapper = document.getElementById('accordionFlushExample')
     var accItem = document.createElement("div");
@@ -58,7 +90,7 @@ function generateSupplierHtml(item, index) {
     accHeaderLink.setAttribute('role', 'button')
     accHeaderLink.setAttribute('aria-expanded', 'false')
     accHeaderLink.setAttribute('aria-controls', '#flush-collapse' + index)
-    accHeaderLink.innerHTML = '<div class="container-fluid p-0 m-0"><dl class="row m-0"><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Id</dt>                                    <dd class="col-9 col-md-1 text-left border-right-md">' + supp.id + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Company</dt>                                    <dd class="col-9 col-md-3 text-left border-right-md">' + supp.company + supp.id + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Sales</dt><dd class="col-9 col-md-4 text-left border-right-md">' + supp.name + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">City</dt><dd class="col-9 col-md-4 text-left">' + supp.city + '</dd></dl></div></a>'
+    accHeaderLink.innerHTML = '<div class="container-fluid p-0 m-0"><dl class="row m-0"><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Id</dt>                                    <dd class="col-9 col-md-1 text-left border-right-md">' + supp.id + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Company</dt>                                    <dd class="col-9 col-md-3 text-left border-right-md">' + supp.company + supp.id + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Sales</dt><dd class="col-9 col-md-4 text-left border-right-md">' + supp.name + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">City</dt><dd class="col-9 col-md-4 text-left">' + supp.city + '</dd></dl></div>'
 
     accCollapse.className = 'accordion-collapse collapse'
     accCollapse.id = 'flush-collapse' + index
@@ -152,14 +184,20 @@ for (var i = 0; i < sortables.length; i++) {
 
 
 
-var url = MnSupplier.sizeUrl
+var url = MnSupplier.sizeUrl + 'all'
 var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
 var paginationInit = new MnPagination(0, numRows, 1, 3, 'paginatorTop', 'id', '1', displayData)
-getPagination(url, paginationInit, init)
+paginationInit.paginationUrl = url
+getPagination(paginationInit.paginationUrl, paginationInit, init)
 
 function noRowsChanged() {
-
-    var url = MnSupplier.sizeUrl
+    let url = MnSupplier.sizeUrl
+    let searchTerm = document.getElementById('search').value
+    if (searchTerm == '') {
+        url = url + 'all'
+    } else {
+        url = url + 'search=' + searchTerm
+    }
     var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
     //var pagination = new MnPagination(0, numRows, 1, 3, 'paginatorTop', 'id', '', displayData)
     paginationInit.rowsPerPage = numRows
@@ -171,7 +209,13 @@ function noRowsChanged() {
 
 function changeOrder() {
     let from = this.id
-    var url = MnSupplier.sizeUrl
+    let url = MnSupplier.sizeUrl
+    let searchTerm = document.getElementById('search').value
+    if (searchTerm == '') {
+        url = url + 'all'
+    } else {
+        url = url + 'search=' + searchTerm
+    }
     var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
     var desc = 0;
 
@@ -204,8 +248,10 @@ function changeOrder() {
 }
 
 function search() {
-    let searchTerm = document.getElementById('search').value
-    alert(searchTerm)
-
+    var url = MnSupplier.sizeUrl + 'search=' + document.getElementById('search').value
+    var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
+    paginationInit.rowsPerPage = numRows
+    paginationInit.currentPage = 1
+    getPagination(url, paginationInit, init)
 
 }
