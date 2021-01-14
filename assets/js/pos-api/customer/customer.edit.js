@@ -1,19 +1,19 @@
 const queryString = window.location.search;
 console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
-const suppId = urlParams.get('id')
-console.log(suppId);
+const custId = urlParams.get('id')
+console.log(custId);
 
 
-if (!suppId) {
-    window.location.href = "supplier_home.html";
+if (!custId) {
+    window.location.href = "customer_home.html";
 }
 
-var supplierObj;
+var customerObj;
 
-fetch(MnSupplier.viewUrl + 'id=' + suppId)
+fetch(MnCustomer.viewUrl + 'id=' + custId)
     .then(res => res.json())
-    .then(data => supplierObj = MnSupplier.fromJson(data))
+    .then(data => customerObj = MnCustomer.fromJson(data))
     .then(() => displayExistingData())
 
 
@@ -31,16 +31,16 @@ function displayExistingData() {
     var mnNotes = document.getElementById("notes");
 
 
-    mnCompany.value = supplierObj.company
-    mnName.value = supplierObj.name
-    mnContact.value = supplierObj.contactno
-    mnEmail.value = supplierObj.email
-    mnStreet.value = supplierObj.street
-    mnCity.value = supplierObj.city
-    mnState.value = supplierObj.state
-    mnCountry.value = supplierObj.country
-    mnBank.value = supplierObj.bank
-    mnNotes.value = supplierObj.notes
+    mnCompany.value = customerObj.company
+    mnName.value = customerObj.name
+    mnContact.value = customerObj.contactno
+    mnEmail.value = customerObj.email
+    mnStreet.value = customerObj.street
+    mnCity.value = customerObj.city
+    mnState.value = customerObj.state
+    mnCountry.value = customerObj.country
+    mnBank.value = customerObj.bank
+    mnNotes.value = customerObj.notes
 
 }
 
@@ -54,17 +54,17 @@ function validateForm() {
 
         } else {
             Swal.fire({
-                title: 'Save Changes of ' + supplierObj.name,
+                title: 'Save Changes of ' + customerObj.name,
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
                 showLoaderOnConfirm: true,
                 preConfirm: () => {
                     setEditedData()
-                    console.log('fetching:' + supplierObj.company)
-                    return fetch(MnSupplier.editUrl + 'id=' + supplierObj.id, {
+                    console.log('fetching:' + customerObj.company)
+                    return fetch(MnCustomer.editUrl + 'id=' + customerObj.id, {
                             method: 'POST',
-                            body: JSON.stringify(supplierObj)
+                            body: JSON.stringify(customerObj)
                         })
                         .then(response => {
                             if (!response.ok) {
@@ -88,7 +88,7 @@ function validateForm() {
                         })
                         .then(function () {
                             // Redirect the user
-                            window.location.href = "supplier_home.html";
+                            window.location.href = "customer_home.html";
                         })
                 }
             })

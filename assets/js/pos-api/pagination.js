@@ -20,15 +20,13 @@ var generatePagination = function (paginationObj) {
     let pageCount = Math.ceil(paginationObj.size / paginationObj.rowsPerPage)
     let startRange = 1
     let endRange = 7
-
     let currentPage = paginationObj.currentPage
     let maxPage = paginationObj.maxPage
     let size = paginationObj.size
 
 
-    if (currentPage != 1) {
+    if (currentPage > 1) {
         createPaginationButton(paginationObj, '<span aria-hidden="true">&laquo;</span>', 'page-item')
-
     }
     startRange = currentPage - maxPage
     if (startRange < 1) {
@@ -39,29 +37,24 @@ var generatePagination = function (paginationObj) {
     if (endRange < 7) {
         endRange = 7
     }
-    if (currentPage > 2 + maxPage) {
+    if (currentPage > 1 + maxPage) {
         createPaginationButton(paginationObj, 1, 'page-item')
         createPaginationButton(paginationObj, '<span aria-hidden="true">&hellip;</span>', 'page-item  disabled')
 
     }
 
-
     for (let i = startRange; i < endRange; i++) {
         if (i > pageCount) {
             break
         }
-
         if (i == currentPage) {
             createPaginationButton(paginationObj, i, 'page-item active')
         } else {
             createPaginationButton(paginationObj, i, 'page-item')
         }
-
-
-
     }
 
-    if (currentPage + maxPage < pageCount) {
+    if (endRange <= pageCount) {
         createPaginationButton(paginationObj, '<span aria-hidden="true">&hellip;</span>', 'page-item  disabled')
         createPaginationButton(paginationObj, pageCount, 'page-item')
 
@@ -70,6 +63,8 @@ var generatePagination = function (paginationObj) {
     if (currentPage < pageCount) {
         createPaginationButton(paginationObj, '<span aria-hidden="true">&raquo;</span>', 'page-item')
     }
+
+    console.log('pageCount:' + pageCount + ',startRange:' + startRange + ', endRange' + endRange + ',currentPage:' + currentPage + ', maxPage:' + maxPage + ', size:' + size)
 
 }
 

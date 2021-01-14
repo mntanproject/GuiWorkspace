@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/assets/images/favicon.ico">
+    <script>
+        const absolutePath = 'file:///android_asset/gui'
+        const appendAbsolutePath = 0
+        const serverUrl = 'http://localhost:9000/'
+
+    </script>
+    <script src="/assets/js/init-page.js"></script>
+</head>
+
+<body id="body" class="bg-my-light vh-100 d-flex flex-column">
+
+    <!--    <script src="/assets/js/header.js"></script>-->
+    <div class="container">
+
+        <!-- page content -->
+
+        <style>
+            #sort-order>i {
+                display: none;
+            }
+
+            .sortable {
+                cursor: pointer;
+            }
+
+            .sortable:after {
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                content: "\f0dc";
+                float: right;
+                color: #ccc;
+
+            }
+
+            .sortable.desc:after {
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                content: "\f885";
+                float: right;
+                color: #fff;
+            }
+
+            .sortable.asc:after {
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                content: "\f884";
+                float: right;
+                color: #fff;
+            }
+
+        </style>
+
+
+        <nav aria-label="breadcrumb text-dark">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="customer_home.html" class="text-dark"><i class="fas fa-people-carry mr-2 mt-1"></i>Customer</a></li>
+                <li class="breadcrumb-item active" aria-current="page">View</li>
+            </ol>
+        </nav>
+
+        <div class="input-group mb-3">
+            <a class="btn btn-primary" type="button" href="customer_add.html"><i class="fas fa-plus-circle"></i></a>
+            <input id="search" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+            <button onclick="search()" class="btn btn-primary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+
+        </div>
+
+
+
+        <!-- rows number -->
+        <div class="d-flex justify-content-end mb-3">
+
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradiorows" id="btnradio1" autocomplete="off" checked onclick="noRowsChanged()" value="5">
+                <label class="btn btn-outline-primary" for="btnradio1">5</label>
+
+                <input type="radio" class="btn-check" name="btnradiorows" id="btnradio2" autocomplete="off" onclick="noRowsChanged()" value="10">
+                <label class="btn btn-outline-primary" for="btnradio2">10</label>
+
+                <input type="radio" class="btn-check" name="btnradiorows" id="btnradio3" autocomplete="off" onclick="noRowsChanged()" value="100">
+                <label class="btn btn-outline-primary" for="btnradio3">100</label>
+            </div>
+
+        </div>
+
+        <!-- end rows number -->
+
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item bg-primary bg-gradient text-white d-none d-sm-none d-md-block">
+                <div class="accordion-header" id="flush-heading">
+
+                    <div class="container-fluid p-3">
+                        <div class="row">
+                            <div id="id" class="col-md-1 sortable desc">
+                                Id
+                            </div>
+                            <div id="company" class="col-md-3 sortable">
+                                Company
+                            </div>
+                            <div id="name" class="col-md-4 sortable">
+                                Sales
+                            </div>
+                            <div id="city" class="col-md-4 sortable">
+                                City
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- paginator -->
+        <div class="d-sm-flex flex-sm-row justify-content-center mt-3" style="width: 100%">
+
+
+            <div class="mb-0">
+                <nav aria-label="Page navigation example">
+                    <ul id="paginatorTop" class="pagination justify-content-center ">
+
+                    </ul>
+                </nav>
+            </div>
+
+
+            <div class="mt-1">
+                <div class="input-group mr-3 justify-content-center">
+                    <span id="summary" class="p-2 small"></span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- end paginator -->
+
+
+    </div>
+
+
+
+    <script>
+        window.addEventListener('load', function() {
+            var supplierScript = ['/assets/js/pos-api/customer/customer.js', '/assets/js/pos-api/pagination.js', '/assets/js/pos-api/customer/customer.home.js'];
+            generateScript(supplierScript);
+        })
+
+    </script>
+
+
+
+
+</body>
+
+</html>
