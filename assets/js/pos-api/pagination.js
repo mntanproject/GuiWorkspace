@@ -11,7 +11,11 @@ function MnPagination(full_data_size, rows_per_page, current_page, pagination_ma
     this.order = order_page
     this.descending = descending_page
     this.paginationUrl = ''
+    this.recordFeedIn = 0
+    this.offset = 0
+    this.limit = 0
     this.displayCallback = display_callback
+
 }
 
 var generatePagination = function (paginationObj) {
@@ -23,6 +27,7 @@ var generatePagination = function (paginationObj) {
     let currentPage = paginationObj.currentPage
     let maxPage = paginationObj.maxPage
     let size = paginationObj.size
+
 
 
     if (currentPage > 1) {
@@ -64,6 +69,8 @@ var generatePagination = function (paginationObj) {
         createPaginationButton(paginationObj, '<span aria-hidden="true">&raquo;</span>', 'page-item')
     }
 
+
+
     console.log('pageCount:' + pageCount + ',startRange:' + startRange + ', endRange' + endRange + ',currentPage:' + currentPage + ', maxPage:' + maxPage + ', size:' + size)
 
 }
@@ -94,11 +101,11 @@ function createPaginationButton(paginationObj, linkInnerHTML, btnClassName) {
             }
 
             generatePagination(paginationObj);
-            let offset = (paginationObj.currentPage - 1) * paginationObj.rowsPerPage
-            let limit = paginationObj.rowsPerPage
-            let order = paginationObj.order
-            let descending = paginationObj.descending
-            paginationObj.displayCallback(offset, limit, order, descending);
+            paginationObj.offset = (paginationObj.currentPage - 1) * paginationObj.rowsPerPage
+            paginationObj.limit = paginationObj.rowsPerPage
+            //let order = paginationObj.order
+            //let descending = paginationObj.descending
+            paginationObj.displayCallback(paginationObj);
             //
             //            document.querySelectorAll('.page-item').forEach(e => e.remove());
             //            //let current_btn = document.querySelector('.pagination li.active');

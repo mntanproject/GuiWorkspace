@@ -102,6 +102,13 @@ var generateScript = function (scripts) {
 
 }
 
+var nullValueToEmpty = function (content) {
+    if (content == undefined || content == null) {
+        content = ''
+    }
+    return content
+}
+
 
 window.onload = () => {
     var arrCss = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap',

@@ -3,10 +3,14 @@
 function getPagination(url, paginationObj, mnCallback) {
     fetch(url)
         .then(response => response.json())
-        .then(result => mnCallback(result, paginationObj));
+        .then(function (result) {
+            let paginationTotalSize = document.getElementById('paginationTotalSize')
+            paginationTotalSize.innerHTML = ' of ' + (result.totalsize) + ' entries'
+            mnCallback(result, paginationObj)
+        });
 }
 
-async function getData(url, mnCallback) {
+async function getData(url, paginationObj, mnCallback) {
     await fetch(url, {
         method: 'Get'
     }).then(function (response) {
@@ -15,23 +19,35 @@ async function getData(url, mnCallback) {
         if (result.length == 0) {
             emptyMessage()
         } else {
+            paginationObj.recordFeedIn = result.length
+            let paginationSummary = document.getElementById('paginationSummary')
+            let numOffset = Number(paginationObj.offset)
+            let numRecordIn = Number(paginationObj.recordFeedIn)
+            paginationSummary.innerHTML = 'Showing ' + (numOffset + 1) + ' to ' + (numOffset + numRecordIn)
             result.forEach(mnCallback);
         }
     }).catch(function (error) {
-        alert('error get data supplier_home.js' + error)
+        alert('error get data supplier_home.js ' + error)
     });
 }
 
-var displayData = function (offset, limit, order, descending) {
+
+
+var displayData = function (paginationObj) {
     document.querySelectorAll('.supplier-data').forEach(e => e.remove());
 
     let url = MnSupplier.paginatorUrl
     let searchTerm = document.getElementById('search').value
-    url = url + 'offset=' + offset + '&limit=' + limit + '&order=' + order + '&descending=' + descending
+    paginationObj.offset = (paginationObj.currentPage - 1) * paginationObj.rowsPerPage
+    paginationObj.limit = paginationObj.rowsPerPage
+    url = url + 'offset=' + paginationObj.offset + '&limit=' + paginationObj.limit + '&order=' + paginationObj.order + '&descending=' + paginationObj.descending
     if (searchTerm != '') {
         url = url + '&search=' + searchTerm
     }
-    getData(url, generateSupplierHtml)
+
+    //alert(url)
+    getData(url, paginationObj, generateSupplierHtml)
+
 }
 
 function init(data, pagination) {
@@ -39,11 +55,8 @@ function init(data, pagination) {
     var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
     document.querySelectorAll('ul.pagination li.page-item').forEach(e => e.remove());
     generatePagination(pagination)
-    let offset = (pagination.currentPage - 1) * pagination.rowsPerPage
-    let limit = pagination.rowsPerPage
-    let order = pagination.order
-    let descending = pagination.descending
-    displayData(offset, limit, order, descending)
+    displayData(pagination)
+
 }
 
 function emptyMessage() {
@@ -69,7 +82,8 @@ function emptyMessage() {
 }
 
 
-function generateSupplierHtml(item, index) {
+function generateSupplierHtml(item, index, arr) {
+
 
     var supp = MnSupplier.fromJson(item);
     var wrapper = document.getElementById('accordionFlushExample')
@@ -90,7 +104,7 @@ function generateSupplierHtml(item, index) {
     accHeaderLink.setAttribute('role', 'button')
     accHeaderLink.setAttribute('aria-expanded', 'false')
     accHeaderLink.setAttribute('aria-controls', '#flush-collapse' + index)
-    accHeaderLink.innerHTML = '<div class="container-fluid p-0 m-0"><dl class="row m-0"><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Id</dt>                                    <dd class="col-9 col-md-1 text-left border-right-md">' + supp.id + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Company</dt>                                    <dd class="col-9 col-md-3 text-left border-right-md">' + supp.company + supp.id + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Sales</dt><dd class="col-9 col-md-4 text-left border-right-md">' + supp.name + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">City</dt><dd class="col-9 col-md-4 text-left">' + supp.city + '</dd></dl></div>'
+    accHeaderLink.innerHTML = '<div class="container-fluid p-0 m-0"><dl class="row m-0"><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Id</dt>                                    <dd class="col-9 col-md-1 text-left border-right-md">' + supp.id + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Company</dt>                                    <dd class="col-9 col-md-3 text-left border-right-md">' + nullValueToEmpty(supp.company) + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">Sales</dt><dd class="col-9 col-md-4 text-left border-right-md">' + nullValueToEmpty(supp.name) + '</dd><dt class="col-3 p-0 m-0 text-left d-md-none d-sm-block">City</dt><dd class="col-9 col-md-4 text-left">' + nullValueToEmpty(supp.city) + '</dd></dl></div>'
 
     accCollapse.className = 'accordion-collapse collapse'
     accCollapse.id = 'flush-collapse' + index
@@ -111,7 +125,7 @@ function generateSupplierHtml(item, index) {
     accCollapseContentContainer.className = 'row'
     accCollapseContentButtonContainer.className = '"d-flex flex-row-reverse bd-highlight'
 
-    accCollapseContentContainer.innerHTML = '<dt class="col-2 small p-0">Contact</dt><dd class="col-10 small">' + supp.contactno + '</dd><dt class="col-2 small p-0">Email</dt><dd class="col-10 small">' + supp.email + '</dd><dt class="col-2 small p-0">Street</dt><dd class="col-10 small">' + supp.street + '</dd><dt class="col-2 small p-0">City</dt><dd class="col-10 small">' + supp.city + '</dd><dt class="col-2 small p-0">State</dt><dd class="col-10 small">' + supp.state + '</dd><dt class="col-2 small p-0">Country</dt><dd class="col-10 small">' + supp.country + '</dd><dt class="col-2 small p-0">Bank</dt><dd class="col-10 small">' + supp.bank + '</dd><dt class="col-2 small p-0">Note</dt><dd class="col-10 small">' + supp.notes + '</dd>'
+    accCollapseContentContainer.innerHTML = '<dt class="col-2 small p-0">Contact</dt><dd class="col-10 small">' + nullValueToEmpty(supp.contact) + '</dd><dt class="col-2 small p-0">Email</dt><dd class="col-10 small">' + nullValueToEmpty(supp.email) + '</dd><dt class="col-2 small p-0">Street</dt><dd class="col-10 small">' + nullValueToEmpty(supp.street) + '</dd><dt class="col-2 small p-0">City</dt><dd class="col-10 small">' + nullValueToEmpty(supp.city) + '</dd><dt class="col-2 small p-0">State</dt><dd class="col-10 small">' + nullValueToEmpty(supp.state) + '</dd><dt class="col-2 small p-0">Country</dt><dd class="col-10 small">' + nullValueToEmpty(supp.country) + '</dd><dt class="col-2 small p-0">Bank</dt><dd class="col-10 small">' + nullValueToEmpty(supp.bank) + '</dd><dt class="col-2 small p-0">Note</dt><dd class="col-10 small">' + nullValueToEmpty(supp.notes) + '</dd>'
 
     accCollapseContentButtonEdit = document.createElement('button')
     accCollapseContentButtonEdit.className = 'btn btn-primary ml-1 mr-1'
