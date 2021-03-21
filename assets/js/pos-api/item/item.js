@@ -1,30 +1,27 @@
-function MnItem(mnId, mnCompany, mnName, mnContact, mnEmail, mnStreet, mnCity, mnState, mnCountry, mnBank, mnNotes) {
-    if (mnId != '') {
-        this.id = mnId;
-    }
-    this.company = mnCompany;
-    this.name = mnName;
-    this.contact = mnContact;
-    this.email = mnEmail;
-    this.street = mnStreet;
-    this.city = mnCity;
-    this.state = mnState;
-    this.country = mnCountry;
-    this.bank = mnBank;
-    this.notes = mnNotes;
-}
+   function MnItem(mnId, mnName, mnBarcode, mnNotes, mnQuantityOnHand, mnPurchasePrice, mnSellingPrice) {
+       if (mnId != '') {
+           this.id = mnId;
+       }
+       this.name = mnName;
+       this.barcode = mnBarcode;
+       this.notes = mnNotes;
+       this.quantityOnHand = mnQuantityOnHand;
+       this.purchasePrice = mnPurchasePrice;
+       this.sellingPrice = mnSellingPrice;
+   }
 
-MnCustomer.fromJson = function (json) {
-    console.log('MnCustomer.fromJson' + json)
-    var obj = json; //JSON.parse(json);
-    var cust = new MnCustomer(obj.id, obj.company, obj.name, obj.contact, obj.email, obj.street, obj.city, obj.state, obj.country, obj.bank, obj.notes);
-    return cust;
-};
+   MnItem.fromJson = function (json) {
+       console.log('MnItem.fromJson' + json)
+       var obj = json; //JSON.parse(json);
+       var item = new MnItem(obj.id, obj.name, obj.barcode, obj.notes, obj.quantityOnHand, obj.purchasePrice, obj.sellingPrice);
+       return item
 
-MnCustomer.addUrl = serverUrl + 'api/customer/add/'
-MnCustomer.editUrl = serverUrl + 'api/customer/edit/'
-MnCustomer.viewUrl = serverUrl + 'api/customer/view/'
-MnCustomer.paginatorUrl = serverUrl + 'api/customer/paginator/'
-MnCustomer.sizeUrl = serverUrl + 'api/customer/size/'
-MnCustomer.deleteUrl = serverUrl + 'api/customer/delete/'
-MnCustomer.searchUrl = serverUrl + 'api/customer/search/'
+   }
+
+   MnItem.addUrl = serverUrl + 'api/item/add/'
+   MnItem.editUrl = serverUrl + 'api/item/edit/'
+   MnItem.viewUrl = serverUrl + 'api/item/view/'
+   MnItem.paginatorUrl = serverUrl + 'api/item/paginator/'
+   MnItem.sizeUrl = serverUrl + 'api/item/size/'
+   MnItem.deleteUrl = serverUrl + 'api/item/delete/'
+   MnItem.searchUrl = serverUrl + 'api/item/search/'

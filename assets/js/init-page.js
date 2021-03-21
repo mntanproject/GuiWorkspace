@@ -112,7 +112,7 @@ var nullValueToEmpty = function (content) {
 
 window.onload = () => {
     var arrCss = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap',
-'/assets/css/bootstrap.min.css', '/assets/css/fontawesome5/css/all.css',
+'/assets/css/bootstrap.min.css', '/assets/css/fontawesome5/css/all.css', '/assets/css/sweetalert2-bootstrap-4.min.css',
 '/assets/css/style.css'];
 
     generateCss(arrCss);
@@ -120,7 +120,7 @@ window.onload = () => {
     generateTitle();
 
     var scripts = ['/assets/js/popper.min.js',
- '/assets/js/bootstrap.min.js', '/assets/js/sweetalert2.all.min.js'];
+ '/assets/js/bootstrap.min.js', '/assets/js/sweetalert2.min.js'];
     //var scripts = ['/assets/js/popper.min.js', '/assets/js/bootstrap.min.js'];
     generateFooter();
     generateScript(scripts);

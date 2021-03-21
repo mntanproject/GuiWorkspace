@@ -23,7 +23,9 @@ async function getData(url, paginationObj, mnCallback) {
             let paginationSummary = document.getElementById('paginationSummary')
             let numOffset = Number(paginationObj.offset)
             let numRecordIn = Number(paginationObj.recordFeedIn)
+
             paginationSummary.innerHTML = 'Showing ' + (numOffset + 1) + ' to ' + (numOffset + numRecordIn)
+
             result.forEach(mnCallback);
         }
     }).catch(function (error) {

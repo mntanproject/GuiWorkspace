@@ -4,7 +4,19 @@
 //    })
 //bootstrap.Popover.getInstance(exampleTriggerEl) // Returns a Bootstrap popover instance
 var supplierObj
-
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+const redirect = nullValueToEmpty(urlParams.get('redirect'))
+//alert(redirect)
+////console.log(redirect);
+//
+//if (redirect != '') {
+//    //window.location.href = redirect;
+//    alert('redire')
+//} else {
+//    alert('home00')
+//}
 function setEditedData() {
 
     var mnCompany = document.getElementById("company").value;
@@ -76,7 +88,12 @@ function validateForm() {
                         })
                         .then(function () {
                             // Redirect the user
-                            window.location.href = "supplier_home.html";
+                            if (redirect != '') {
+                                window.location.href = redirect;
+                            } else {
+                                window.location.href = "supplier_home.html";
+                            }
+
                         })
                 }
             })
