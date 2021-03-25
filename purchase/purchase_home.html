@@ -57,7 +57,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="purchase_home.html" class="text-dark"
-              ><i class="fas fa-people-carry mr-2 mt-1"></i>Purchase</a
+              ><i class="fas fa-truck-loading mr-2 mt-1"></i>Purchase</a
             >
           </li>
           <li class="breadcrumb-item active" aria-current="page">View</li>
@@ -177,9 +177,8 @@
     <script>
       window.addEventListener("load", function () {
         var purchaseScript = [
-          "/assets/js/pos-api/purchase/purchase.js",
-          "/assets/js/pos-api/pagination.js",
-          "/assets/js/pos-api/purchase/purchase.home.js",
+        "/assets/js/pos-api/pagination.js","/assets/js/pos-api/purchase/purchase.js",
+        "/assets/js/pos-api/purchase/purchase.home.js"
         ];
         generateScript(purchaseScript);
       });

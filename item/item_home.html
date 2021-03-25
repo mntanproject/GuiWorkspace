@@ -62,7 +62,8 @@
 
         <nav aria-label="breadcrumb text-dark">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="item_home.html" class="text-dark"><i class="fas fa-truck-loading mr-2 mt-1"></i>Item</a></li>
+                <li class="breadcrumb-item"><a href="item_home.html" class="text-dark">
+                    <i class="fas fa-boxes mr-2 mt-1"></i>Item</a></li>
                 <li class="breadcrumb-item active" aria-current="page">View</li>
             </ol>
         </nav>
@@ -149,7 +150,8 @@
 
     <script>
         window.addEventListener('load', function() {
-            var supplierScript = ['/assets/js/pos-api/customer/customer.js', '/assets/js/pos-api/pagination.js', '/assets/js/pos-api/customer/customer.home.js'];
+            var supplierScript = ['/assets/js/pos-api/pagination.js','/assets/js/pos-api/item/item.js', 
+             '/assets/js/pos-api/item/item.home.js'];
             generateScript(supplierScript);
         })
 

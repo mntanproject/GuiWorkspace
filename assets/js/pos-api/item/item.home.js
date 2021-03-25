@@ -36,7 +36,7 @@ async function getData(url, paginationObj, mnCallback) {
 var displayData = function (paginationObj) {
     document.querySelectorAll('.mn-data').forEach(e => e.remove());
 
-    let url = MnCustomer.paginatorUrl
+    let url = MnItem.paginatorUrl
     let searchTerm = document.getElementById('search').value
     paginationObj.offset = (paginationObj.currentPage - 1) * paginationObj.rowsPerPage
     paginationObj.limit = paginationObj.rowsPerPage
@@ -84,7 +84,7 @@ function emptyMessage() {
 function generateHtml(item, index, arr) {
 
 
-    var mn = MnCustomer.fromJson(item);
+    var mn = MnItem.fromJson(item);
     var wrapper = document.getElementById('accordionFlushExample')
     var accItem = document.createElement("div");
     var accHeader = document.createElement('div');
@@ -145,7 +145,7 @@ function generateHtml(item, index, arr) {
             confirmButtonText: 'Yes',
             showLoaderOnConfirm: true,
             preConfirm: () => {
-                return fetch(MnCustomer.deleteUrl + 'id=' + mn.id)
+                return fetch(MnItem.deleteUrl + 'id=' + mn.id)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error(response.statusText)
@@ -164,7 +164,7 @@ function generateHtml(item, index, arr) {
                 Swal.fire('Deleted')
                     .then(function () {
                         // Redirect the user
-                        window.location.href = "customer_home.html";
+                        window.location.href = "item_home.html";
                     })
             }
         })
@@ -197,14 +197,14 @@ for (var i = 0; i < sortables.length; i++) {
 
 
 
-var url = MnCustomer.sizeUrl + 'all'
+var url = MnItem.sizeUrl + 'all'
 var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
 var paginationInit = new MnPagination(0, numRows, 1, 3, 'paginatorTop', 'id', '1', displayData)
 paginationInit.paginationUrl = url
 getPagination(paginationInit.paginationUrl, paginationInit, init)
 
 function noRowsChanged() {
-    let url = MnCustomer.sizeUrl
+    let url = MnItem.sizeUrl
     let searchTerm = document.getElementById('search').value
     if (searchTerm == '') {
         url = url + 'all'
@@ -222,7 +222,7 @@ function noRowsChanged() {
 
 function changeOrder() {
     let from = this.id
-    let url = MnCustomer.sizeUrl
+    let url = MnItem.sizeUrl
     let searchTerm = document.getElementById('search').value
     if (searchTerm == '') {
         url = url + 'all'
@@ -261,7 +261,7 @@ function changeOrder() {
 }
 
 function search() {
-    var url = MnCustomer.sizeUrl + 'search=' + document.getElementById('search').value
+    var url = MnItem.sizeUrl + 'search=' + document.getElementById('search').value
     var numRows = document.querySelector('input[name = "btnradiorows"]:checked').value;
     paginationInit.rowsPerPage = numRows
     paginationInit.currentPage = 1

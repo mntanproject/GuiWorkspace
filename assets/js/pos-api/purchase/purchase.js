@@ -9,7 +9,7 @@ function MnPurchase(mnId, mnTotal, mnCreatedOn, mnItems, mnSupplier) {
 }
 
 MnPurchase.fromJson = function (json) {
-    console.log('MnPurchase.fromJson' + json)
+    console.log('MnPurchase.fromJson' + JSON.stringify(json))
     var obj = json; //JSON.parse(json);
     var purchase = new MnPurchase(obj.id, obj.total, obj.createdOn, obj.items, obj.supplier);
     return purchase;

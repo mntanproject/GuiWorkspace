@@ -98,6 +98,7 @@ function emptyMessage() {
 function generateSupplierHtml(item, index, arr) {
   var purch = MnPurchase.fromJson(item);
 
+  //console.log("purch: " + purch);
   var wrapper = document.getElementById("accordionFlushExample");
   var accItem = document.createElement("div");
   var accHeader = document.createElement("div");
@@ -148,19 +149,22 @@ function generateSupplierHtml(item, index, arr) {
 
   let accCollapseContentContainerStr =
     '<table class="table"><thead><tr><th scope="col">Id</th><th scope="col">Name</th><th scope="col">Price</th></tr></thead><tbody>';
-   let purchaseItems = purch.items;
 
-   for (let i = 0; i < purchaseItems.length; i++) {
-    accCollapseContentContainerStr +=
-      '<tr><th scope="row">' +
-      purchaseItems[i].id +
-      "</th><td>" +
-      purchaseItems[i].name +
-      "</td><td>" +
-      purchaseItems[i].purchasePrice +
-      "</tr>";
+  let purchaseItems = purch.items;
+
+  if (purchaseItems != null) {
+    //console.log('size: ' + purchaseItems.size)
+    for (let i = 0; i < purchaseItems.length; i++) {
+      accCollapseContentContainerStr +=
+        '<tr><th scope="row">' +
+        purchaseItems[i].id +
+        "</th><td>" +
+        purchaseItems[i].name +
+        "</td><td>" +
+        purchaseItems[i].purchasePrice +
+        "</tr>";
+    }
   }
-
   accCollapseContentContainerStr += "</tbody></table>";
   accCollapseContentContainer.innerHTML = accCollapseContentContainerStr;
 
@@ -232,7 +236,16 @@ for (var i = 0; i < sortables.length; i++) {
 var url = MnPurchase.sizeUrl + "all";
 var numRows = document.querySelector('input[name = "btnradiorows"]:checked')
   .value;
-var paginationInit = new MnPagination(0,numRows, 1, 3, "paginatorTop", "id", "1", displayData);
+var paginationInit = new MnPagination(
+  0,
+  numRows,
+  1,
+  3,
+  "paginatorTop",
+  "id",
+  "1",
+  displayData
+);
 paginationInit.paginationUrl = url;
 getPagination(paginationInit.paginationUrl, paginationInit, init);
 
