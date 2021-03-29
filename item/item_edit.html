@@ -1,147 +1,163 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="icon" href="/assets/images/favicon.ico" />
+        <script>
+            const absolutePath = "file:///android_asset/gui";
+            const appendAbsolutePath = 0;
+            const serverUrl = "http://localhost:9000/";
+        </script>
+        <script src="/assets/js/init-page.js"></script>
+    </head>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/assets/images/favicon.ico">
-    <script>
-        const absolutePath = 'file:///android_asset/gui'
-        const appendAbsolutePath = 0
-        const serverUrl = 'http://localhost:9000/'
+    <body id="body" class="bg-my-light vh-100 d-flex flex-column">
+        <!--    <script src="/assets/js/header.js"></script>-->
 
-    </script>
-    <script src="/assets/js/init-page.js"></script>
-</head>
+        <div class="container">
+            <!-- page content -->
 
-<body id="body" class="bg-my-light vh-100 d-flex flex-column">
+            <nav aria-label="breadcrumb text-dark">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="item_home.html" class="text-dark">
+                            <i class="fas fa-boxes mr-2 mt-1"></i>Item</a
+                        >
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Edit
+                    </li>
+                </ol>
+            </nav>
 
-    <!--    <script src="/assets/js/header.js"></script>-->
-
-    <div class="container">
-
-        <!-- page content -->
-
-        <nav aria-label="breadcrumb text-dark">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="item_home.html" class="text-dark">
-                    <i class="fas fa-boxes mr-2 mt-1"></i>Item</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit</li>
-            </ol>
-        </nav>
-
-        <form id="customerEditForm" class="row g-3 needs-validation">
-            <div class="row g-2 mb-2">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="company" class="form-control" placeholder="company" required>
-                        <label for="company">Company Name</label>
-                        <div class="invalid-feedback">Invalid field.</div>
-                    </div>
-
-                </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="name" class="form-control" placeholder="name" required>
-                        <label for="name">Full Name</label>
-                        <div class="invalid-feedback">Invalid field.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-2 mb-2">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="contactno" class="form-control" placeholder="contactno" required>
-                        <label for="contactno">Contact No.</label>
-                        <div class="invalid-feedback">Invalid field.</div>
+            <form id="customerEditForm" class="row g-3 needs-validation">
+                <div class="row g-2 mb-2">
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input
+                                type="text"
+                                id="name"
+                                class="form-control"
+                                placeholder="name"
+                                required
+                            />
+                            <label for="name">Item Name</label>
+                            <div class="invalid-feedback">Invalid field.</div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="email" id="email" class="form-control" placeholder="email" required>
-                        <label for="email">Email</label>
-                        <div class="invalid-feedback">Invalid email</div>
+                <div class="row g-2 mb-2">
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input
+                                type="text"
+                                id="barcode"
+                                class="form-control"
+                                placeholder="Barcode"
+                                required
+                            />
+                            <label for="name">Barcode</label>
+                            <div class="invalid-feedback">Invalid field.</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row g-2 mb-2">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="street" class="form-control" placeholder="street" required>
-                        <label for="street">Street</label>
-                        <div class="invalid-feedback">Invalid field.</div>
+                <div class="row g-2 mb-2">
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input
+                                type="number"
+                                id="purchasePrice"
+                                class="form-control"
+                                placeholder="Purchase price"
+                                required
+                            />
+                            <label for="purchasePrice">Purchase price</label>
+                            <div class="invalid-feedback">Invalid field.</div>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input
+                                type="number"
+                                id="sellingPrice"
+                                class="form-control"
+                                placeholder="Selling Price"
+                                required
+                            />
+                            <label for="sellingPrice">Selling Price</label>
+                            <div class="invalid-feedback">Invalid field</div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="city" class="form-control" placeholder="city" required>
-                        <label for="city">City</label>
-                        <div class="invalid-feedback">Invalid field.</div>
+                <div class="row g-2 mb-2">
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input
+                                type="number"
+                                id="quantityOnHand"
+                                class="form-control"
+                                placeholder="Quantity on hand"
+                                required
+                            />
+                            <label for="quantityOnHand">Quantity on hand</label>
+                            <div class="invalid-feedback">Invalid field.</div>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input
+                                type="text"
+                                id="notes"
+                                class="form-control"
+                                placeholder="Notes"
+                                required
+                            />
+                            <label for="notes">Notes</label>
+                            <div class="invalid-feedback">Invalid field.</div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row g-2 mb-2">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="state" class="form-control" placeholder="state" required>
-                        <label for="state">State</label>
-                        <div class="invalid-feedback">Invalid field.</div>
+                <div class="d-grid gap-2 col-6 mx-auto mt-0 mb-3">
+                    <a
+                        id="btnAdd"
+                        onclick="validateForm();"
+                        class="btn btn-primary shadow mt-3"
+                        ><i class="fas fa-save mr-2"></i>Save</a
+                    >
+                </div>
+                <div class="d-flex justify-content-center p-0 m-0">
+                    <div
+                        id="myToast"
+                        class="toast d-flex align-items-center bg-danger text-white"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                    >
+                        <div id="myToastBody" class="toast-body"></div>
+                        <button
+                            type="button"
+                            class="btn-close btn-close-white ms-auto me-2"
+                            data-bs-dismiss="toast"
+                            aria-label="Close"
+                        ></button>
                     </div>
                 </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="country" class="form-control" placeholder="country" required>
-                        <label for="country">Country</label>
-                        <div class="invalid-feedback">Invalid field.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-2 mb-2">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="bank" class="form-control" placeholder="bank" required>
-                        <label for="bank">Bank account</label>
-                        <div class="invalid-feedback">Invalid field.</div>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input type="text" id="notes" class="form-control" placeholder="notes" required>
-                        <label for="notes">Notes</label>
-                        <div class="invalid-feedback">Invalid field.</div>
-                    </div>
-                </div>
-            </div>
+            </form>
+        </div>
 
-            <div class="d-grid gap-2 col-6 mx-auto mt-0 mb-3">
-                <a id="btnAdd" onclick="validateForm();" class="btn btn-primary shadow mt-3"><i class="fas fa-save mr-2"></i>Save</a>
-            </div>
-            <div class="d-flex justify-content-center p-0 m-0">
-                <div id="myToast" class="toast d-flex align-items-center  bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div id="myToastBody" class="toast-body"></div>
-                    <button type="button" class="btn-close btn-close-white ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            </div>
-
-        </form>
-
-    </div>
-
-
-    <!--    <script src="/assets/js/footer.js"></script>-->
-    <script>
-        window.addEventListener('load', function() {
-
-            var supplierScript = ['/assets/js/pos-api/customer/customer.js', '/assets/js/pos-api/customer/customer.edit.js'];
-            generateScript(supplierScript);
-        })
-
-    </script>
-
-
-</body>
-
+        <!--    <script src="/assets/js/footer.js"></script>-->
+        <script>
+            window.addEventListener("load", function () {
+                var supplierScript = [
+                    "/assets/js/pos-api/item/item.js",
+                    "/assets/js/pos-api/item/item.edit.js",
+                ];
+                generateScript(supplierScript);
+            });
+        </script>
+    </body>
 </html>

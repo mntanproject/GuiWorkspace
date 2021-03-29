@@ -1,118 +1,91 @@
 const queryString = window.location.search;
 console.log(queryString);
 const urlParams = new URLSearchParams(queryString);
-const custId = urlParams.get('id')
-console.log(custId);
+const itemId = urlParams.get("id");
+console.log(itemId);
 
-
-if (!custId) {
-    window.location.href = "customer_home.html";
+if (!itemId) {
+    window.location.href = "item_home.html";
 }
 
-var customerObj;
+var itemObj;
 
-fetch(MnCustomer.viewUrl + 'id=' + custId)
-    .then(res => res.json())
-    .then(data => customerObj = MnCustomer.fromJson(data))
-    .then(() => displayExistingData())
-
+fetch(MnItem.viewUrl + "id=" + itemId)
+    .then((res) => res.json())
+    .then((data) => (itemObj = MnItem.fromJson(data)))
+    .then(() => displayExistingData());
 
 function displayExistingData() {
-
-    var mnCompany = document.getElementById("company");
     var mnName = document.getElementById("name");
-    var mnContact = document.getElementById("contactno");
-    var mnEmail = document.getElementById("email");
-    var mnStreet = document.getElementById("street");
-    var mnCity = document.getElementById("city");
-    var mnState = document.getElementById("state");
-    var mnCountry = document.getElementById("country");
-    var mnBank = document.getElementById("bank");
+    var mnSellingPrice = document.getElementById("sellingPrice");
+    var mnPurchasePrice = document.getElementById("purchasePrice");
+    var mnQuantityOnHand = document.getElementById("quantityOnHand");
     var mnNotes = document.getElementById("notes");
+    var mnBarcode = document.getElementById("barcode");
 
-
-    mnCompany.value = customerObj.company
-    mnName.value = customerObj.name
-    mnContact.value = customerObj.contact
-    mnEmail.value = customerObj.email
-    mnStreet.value = customerObj.street
-    mnCity.value = customerObj.city
-    mnState.value = customerObj.state
-    mnCountry.value = customerObj.country
-    mnBank.value = customerObj.bank
-    mnNotes.value = customerObj.notes
-
+    mnName.value = itemObj.name;
+    mnBarcode.value = itemObj.barcode;
+    mnSellingPrice.value = itemObj.sellingPrice;
+    mnPurchasePrice.value = itemObj.purchasePrice;
+    mnQuantityOnHand.value = itemObj.quantityOnHand;
+    mnNotes.value = itemObj.notes;
 }
 
 function validateForm() {
-    var forms = document.querySelectorAll('.needs-validation');
+    var forms = document.querySelectorAll(".needs-validation");
     forms.forEach(function (form) {
         if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-            form.classList.add('was-validated')
-
+            event.preventDefault();
+            event.stopPropagation();
+            form.classList.add("was-validated");
         } else {
             Swal.fire({
-                title: 'Save Changes of ' + customerObj.name,
-                icon: 'question',
+                title: "Save Changes of " + itemObj.name,
+                icon: "question",
                 showCancelButton: true,
-                confirmButtonText: 'Yes',
+                confirmButtonText: "Yes",
                 showLoaderOnConfirm: true,
                 preConfirm: () => {
-                    setEditedData()
-                    console.log('fetching:' + customerObj.company)
-                    return fetch(MnCustomer.editUrl + 'id=' + customerObj.id, {
-                            method: 'POST',
-                            body: JSON.stringify(customerObj)
-                        })
-                        .then(response => {
+                    setEditedData();
+                    console.log("fetching:" + itemObj.name);
+                    return fetch(MnItem.editUrl + "id=" + itemObj.id, {
+                        method: "POST",
+                        body: JSON.stringify(itemObj),
+                    })
+                        .then((response) => {
                             if (!response.ok) {
-                                throw new Error(response.statusText)
+                                throw new Error(response.statusText);
                             }
-                            return response.json()
+                            return response.json();
                         })
-                        .catch(error => {
+                        .catch((error) => {
                             Swal.showValidationMessage(
                                 `Request failed: ${error}`
-                            )
-                        })
+                            );
+                        });
                 },
-                allowOutsideClick: () => !Swal.isLoading()
+                allowOutsideClick: () => !Swal.isLoading(),
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                            text: 'Updated',
-                            icon: 'success',
-                            timer: 3000
-                        })
-                        .then(function () {
-                            // Redirect the user
-                            window.location.href = "customer_home.html";
-                        })
+                        text: "Updated",
+                        icon: "success",
+                        timer: 3000,
+                    }).then(function () {
+                        // Redirect the user
+                        window.location.href = "item_home.html";
+                    });
                 }
-            })
-
+            });
         }
-    })
-
+    });
 }
 
-
 function setEditedData() {
-
-
-    customerObj.company = document.getElementById("company").value;
-    customerObj.name = document.getElementById("name").value;
-    customerObj.contact = document.getElementById("contactno").value;
-    customerObj.email = document.getElementById("email").value;
-    customerObj.street = document.getElementById("street").value;
-    customerObj.city = document.getElementById("city").value;
-    customerObj.state = document.getElementById("state").value;
-    customerObj.country = document.getElementById("country").value;
-    customerObj.bank = document.getElementById("bank").value;
-    customerObj.notes = document.getElementById("notes").value;
-
-
-
+    itemObj.name = document.getElementById("name").value;
+    itemObj.barcode = document.getElementById("barcode").value;
+    itemObj.sellingPrice = document.getElementById("sellingPrice").value;
+    itemObj.purchasePrice = document.getElementById("purchasePrice").value;
+    itemObj.quantityOnHand = document.getElementById("quantityOnHand").value;
+    itemObj.notes = document.getElementById("notes").value;
 }

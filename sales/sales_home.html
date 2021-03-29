@@ -56,8 +56,9 @@
             <nav aria-label="breadcrumb text-dark">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="item_home.html" class="text-dark">
-                            <i class="fas fa-boxes mr-2 mt-1"></i>Item</a
+                        <a href="sales_home.html" class="text-dark"
+                            ><i class="fas fa-shopping-cart mr-2 mt-1"></i
+                            >Sales</a
                         >
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
@@ -67,7 +68,7 @@
             </nav>
 
             <div class="input-group mb-3">
-                <a class="btn btn-primary" type="button" href="item_add.html"
+                <a class="btn btn-primary" type="button" href="sales_add.html"
                     ><i class="fas fa-plus-circle"></i
                 ></a>
                 <input
@@ -149,17 +150,14 @@
                                 <div id="id" class="col-md-1 sortable desc">
                                     Id
                                 </div>
-                                <div id="name" class="col-md-3 sortable">
-                                    Name
+                                <div id="supplier" class="col-md-3">
+                                    Supplier
                                 </div>
-                                <div id="barcode" class="col-md-4 sortable">
-                                    Barcode
+                                <div id="total" class="col-md-4 sortable">
+                                    Total
                                 </div>
-                                <div
-                                    id="quantityOnHand"
-                                    class="col-md-4 sortable"
-                                >
-                                    Quantity on hand
+                                <div id="createdOn" class="col-md-4 sortable">
+                                    Date
                                 </div>
                             </div>
                         </div>
@@ -194,14 +192,14 @@
         </div>
 
         <script>
-            window.addEventListener("load", function () {
-                var supplierScript = [
-                    "/assets/js/pos-api/pagination.js",
-                    "/assets/js/pos-api/item/item.js",
-                    "/assets/js/pos-api/item/item.home.js",
-                ];
-                generateScript(supplierScript);
-            });
+            // window.addEventListener("load", function () {
+            var purchaseScript = [
+                "/assets/js/pos-api/pagination.js",
+                "/assets/js/pos-api/purchase/purchase.js",
+                "/assets/js/pos-api/purchase/purchase.home.js",
+            ];
+            generateScript(purchaseScript);
+            //});
         </script>
     </body>
 </html>
