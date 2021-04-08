@@ -94,56 +94,81 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="d-grid gap-2 col-6 mx-auto mt-0 mb-3">
-                                <a id="btnAdd" onclick="addItem();" class="btn btn-primary shadow mt-3"><i
-                                        class="fas fa-plus mr-2"></i>Add</a>
+                            <div id="selectedItems" class="row g-2 mb-2">
+                                <dl class="row">
+                                    <dt class="col-sm-4">Name</dt>
+                                    <dd class="col-sm-8" id="itemName"></dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-4">Barcode
+                                    </dt>
+                                    <dd class="col-sm-8" id="itemBarcode"></dd>
+                                </dl>
+                                <dl class="row">
+                                    <dt class="col-sm-4">Quantity on hand
+                                    </dt>
+                                    <dd class="col-sm-8" id="itemQuantity"></dd>
+                                </dl>
                             </div>
-                        </div>
-                    </div>
-                    <!-- items panel -->
-
-                    <!-- end items panel -->
-                </div>
-                <div id="summaryPanel" class="col-md-4 d-none">
-                    <!-- Start summary panel -->
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex">
-                                <div id="selectedSupplierName" class="me-auto">
-                                    Name:
+                            <div class="col-sm">
+                                <div class="form-floating">
+                                    <input type="text" id="itemSalesQuantity" class="form-control" placeholder="name"
+                                        required />
+                                    <label for="itemSalesQuantity">Sales Quantity</label>
+                                    <div class="invalid-feedback">Invalid field.</div>
                                 </div>
-                                <div id="selectedSupplierCompany" class="">
-                                    Company:
-                                </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="accordion accordion-flush" id="accordionItems"></div>
+                        <div class="d-grid gap-2 col-6 mx-auto mt-0 mb-3">
+                            <a id="btnAdd" onclick="addItem();" class="btn btn-primary shadow mt-3"><i
+                                    class="fas fa-plus mr-2"></i>Add</a>
                         </div>
-                        <div class="card-footer">
-                            <div class="d-flex">
-                                <div id="totalPurchase"></div>
+                    </div>
+                </div>
+                <!-- items panel -->
+
+                <!-- end items panel -->
+            </div>
+            <div id="summaryPanel" class="col-md-4 d-none">
+                <!-- Start summary panel -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex">
+                            <div id="selectedCustomerName" class="me-auto">
+                                Name:
+                            </div>
+                            <div id="selectedCustomerCompany" class="">
+                                Company:
                             </div>
                         </div>
                     </div>
-                    <div class="d-grid">
-                        <a id="btnAdd" onclick="save();" class="btn btn-primary shadow mt-3"><i
-                                class="fas fa-save mr-2"></i>Save</a>
+                    <div class="card-body">
+                        <div class="accordion accordion-flush" id="accordionItems"></div>
                     </div>
-
-                    <!-- end summary panel -->
+                    <div class="card-footer">
+                        <div class="d-flex">
+                            <div id="totalSales"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="d-flex justify-content-center p-0 m-0">
-                <div id="myToast" class="toast d-flex align-items-center bg-danger text-white" role="alert"
-                    aria-live="assertive" aria-atomic="true">
-                    <div id="myToastBody" class="toast-body"></div>
-                    <button type="button" class="btn-close btn-close-white ms-auto me-2" data-bs-dismiss="toast"
-                        aria-label="Close"></button>
+                <div class="d-grid">
+                    <a id="btnAdd" onclick="save();" class="btn btn-primary shadow mt-3"><i
+                            class="fas fa-save mr-2"></i>Save</a>
                 </div>
+
+                <!-- end summary panel -->
             </div>
-        </form>
+    </div>
+
+    <div class="d-flex justify-content-center p-0 m-0">
+        <div id="myToast" class="toast d-flex align-items-center bg-danger text-white" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div id="myToastBody" class="toast-body"></div>
+            <button type="button" class="btn-close btn-close-white ms-auto me-2" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+    </form>
     </div>
 
     <!--    <script src="/assets/js/footer.js"></script>-->

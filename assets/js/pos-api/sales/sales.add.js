@@ -2,6 +2,7 @@
 var selectedCustomer = new MnCustomer("", "", "", "", "", "", "", "", "", "");
 var items = [];
 var totalSales = 0;
+var selectedItem = new MnItem('', '', '', '', '', '', '')
 
 async function searchItem() {
     const { value: search } = await Swal.fire({
@@ -31,7 +32,7 @@ async function searchItem() {
                         }
                         return response.json();
                     })
-                    .catch((errolengthr) => {
+                    .catch((error) => {
                         Swal.showValidationMessage(`Request failed: ${error}`);
                     });
             })
@@ -43,36 +44,40 @@ async function searchItem() {
                     var row = document.createElement("tr");
 
                     for (let i = 0; i < searchResult.length; i++) {
-                        let jsonCustomer = MnCustomer.fromJson(searchResult[i]);
+                        let jsonItem = MnItem.fromJson(searchResult[i]);
                         row = document.createElement("tr");
                         row.className = "clickable";
                         row.setAttribute(
                             "onclick",
-                            "setActive(this);setSelectedCustomer(" +
-                            JSON.stringify(jsonCustomer) +
+                            "setActive(this);setSelectedItem(" +
+                            JSON.stringify(jsonItem) +
                             ")"
                         );
                         row.innerHTML =
                             '<th scope="row"  class="small">' +
                             searchResult[i].id +
                             '</th><td class="small">' +
-                            searchResult[i].company +
-                            '</td><td class="small">' +
                             searchResult[i].name +
                             '</td><td class="small">' +
-                            searchResult[i].city +
+                            searchResult[i].barcode +
+                            '</td><td class="small">' +
+                            searchResult[i].quantityOnHand +
                             "</td>";
 
                         rows.appendChild(row);
                     }
                     Swal.fire({
                         html:
-                            '<table class="table table-sm table-hover pt-1"><thead><tr><th scope="col" class="small">#</th><th scope="col" class="small">Company</th><th scope="col" class="small">Name</th><th scope="col" class="small">City</th></tr></thead>' +
+                            '<table class="table table-sm table-hover pt-1"><thead><tr><th scope="col" class="small">#</th><th scope="col" class="small">Name</th><th scope="col" class="small">Barcode</th><th scope="col" class="small">Quantity</th></tr></thead>' +
                             rows.innerHTML +
                             "</table>",
+                        confirmButtonText: `Select`,
                         showCloseButton: true,
-                    }).then(() => {
-                        //alert(selectedCustomer.company)
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            addSelectedItem()
+                        }
                     });
                 }
                 //alert(JSON.stringify(searchResult))
@@ -148,6 +153,7 @@ async function searchCustomer() {
                             "</table>",
                         showCloseButton: true,
                     }).then(() => {
+                        updateSummarySection()
                         //alert(selectedCustomer.company)
                     });
                 }
@@ -162,6 +168,35 @@ function setActive(x) {
         clickables[i].classList.remove("active");
     }
     x.classList.add("active");
+}
+
+function addSelectedItem() {
+    items.push(selectedItem);
+
+    for (let i = 0; i < items.length; i++) {
+        let itemNameElement = document.getElementById('itemName')
+        let itemBarcodeElement = document.getElementById('itemBarcode')
+        let itemQuantityElement = document.getElementById('itemQuantity')
+
+        itemNameElement.innerHTML = items[i].name
+        itemBarcodeElement.innerHTML = items[i].barcode
+        itemQuantityElement.innerHTML = items[i].quantityOnHand
+        console.log(i + ' - ' + items[i].name)
+    }
+
+}
+function setSelectedItem(selectedItemVar) {
+
+    selectedItem = selectedItemVar
+
+    // let iId = document.getElementById("customerId");
+    // customerId.innerHTML = selectedCustomer.id;
+    // let customerCompany = document.getElementById("customerCompany");
+    // customerCompany.innerHTML = selectedCustomer.company;
+    // let customerName = document.getElementById("customerName");
+    // customerName.innerHTML = selectedCustomer.name;
+    // let customerCity = document.getElementById("customerCity");
+    // customerCity.innerHTML = selectedCustomer.city;
 }
 
 function setSelectedCustomer(selectedCustomerVar) {
@@ -182,6 +217,8 @@ function addNewCustomer() {
 }
 
 function updateSummarySection() {
+    var summaryPanel = document.getElementById('summaryPanel')
+    summaryPanel.classList.remove('d-none')
     var selectedCustomerName = document.getElementById("selectedCustomerName");
     var selectedCustomerCompany = document.getElementById(
         "selectedCustomerCompany"
@@ -215,8 +252,8 @@ function updateSummarySection() {
 
         var accCollapse = document.createElement("div");
         accCollapse.id = "flush-collapse" + i;
-        accCollapse.className = "accordion-collapse collapse";
-        accCollapse.setAttribute("aria-labelledby", "flush-heading" + i);
+        accCollapse.className = "accordion-collapse";
+        accCollapse.setAttribute("aria-labelledby", "flush-h collapseeading" + i);
         accCollapse.setAttribute("data-bs-parent", "#" + accItems.id);
 
         var accButtonDeleteContainer = document.createElement("div");
