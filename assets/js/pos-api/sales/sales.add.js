@@ -188,6 +188,7 @@ function addSelectedItem() {
 function setSelectedItem(selectedItemVar) {
 
     selectedItem = selectedItemVar
+   
 
     // let iId = document.getElementById("customerId");
     // customerId.innerHTML = selectedCustomer.id;
@@ -270,10 +271,10 @@ function updateSummarySection() {
         var accBody = document.createElement("div");
         accBody.className = "accordion-body";
         accBody.innerHTML =
-            '<dl class="row"><dt class="col-lg-6">Quantity</dt><dd class="col-lg-6">' +
-            items[i].quantityOnHand +
+            '<dl class="row"><dt class="col-lg-6">Sales Quantity</dt><dd class="col-lg-6">' +
+            items[i].salesQuantity +
             '</dd><dt class="col-md-6">Sales price</dt><dd class="col-md-6">' +
-            items[i].salesPrice +
+            items[i].sellingPrice +
             "</dd></dl>";
         accBody.appendChild(accButtonDeleteContainer);
 
@@ -283,7 +284,8 @@ function updateSummarySection() {
         accItem.appendChild(accCollapse);
         accItems.appendChild(accItem);
 
-        totalSales += items[i].salesPrice * items[i].quantityOnHand;
+        totalSales += items[i].sellingPrice * items[i].salesQuantity;
+        alert(items[i].sellingPrice + ' - ' + totalSales + ' - ' + items[i].salesQuantity)
     }
     var totalSalesSummary = document.getElementById("totalSales");
     totalSalesSummary.innerHTML = "Total Sales: " + totalSales;
@@ -330,29 +332,33 @@ function addItem() {
                     title: "Please select a Customer",
                 });
             } else {
-                var mnName = document.getElementById("itemName").value;
-                var mnBarcode = document.getElementById("itemBarcode").value;
-                var mnQuantityOnHand = document.getElementById("itemQuantity")
-                    .value;
-                var mnSalesPrice = document.getElementById("itemSalesPrice")
-                    .value;
-                var mnNotes = document.getElementById("itemNotes").value;
-                var mnSellingPrice = document.getElementById("itemSellingPrice")
-                    .value;
-                let item = new MnItem(
-                    "",
-                    mnName,
-                    mnBarcode,
-                    mnNotes,
-                    mnQuantityOnHand,
-                    mnSalesPrice,
-                    mnSellingPrice
-                );
-                items.push(item);
+                let salesQuantity = document.getElementById('itemSalesQuantity').value
+                selectedItem.salesQuantity = salesQuantity
+                alert(salesQuantity)
+                // var mnName = document.getElementById("itemName").value;
+                // var mnBarcode = document.getElementById("itemBarcode").value;
+                // var mnQuantityOnHand = document.getElementById("itemQuantity")
+                //     .value;
+                // var mnSalesPrice = document.getElementById("itemSalesPrice")
+                //     .value;
+                // var mnNotes = document.getElementById("itemNotes").value;
+                // var mnSellingPrice = document.getElementById("itemSellingPrice")
+                //     .value;
+                // let item = new MnItem(
+                //     "",
+                //     mnName,
+                //     mnBarcode,
+                //     mnNotes,
+                //     mnQuantityOnHand,
+                //     mnSalesPrice,
+                //     mnSellingPrice
+                // );
+                // items.push(item);
                 updateSummarySection();
-                var summaryPanel = document.getElementById("summaryPanel");
-                summaryPanel.classList.remove("d-none");
-                console.log(items.length);
+                // var summaryPanel = document.getElementById("summaryPanel");
+                // summaryPanel.classList.remove("d-none");
+                // console.log(items.length);
+                //alert(items.length)
             }
         }
     });
@@ -376,7 +382,7 @@ function save() {
         if (result.isConfirmed) {
             fetch(MnSales.addUrl, {
                 method: "Post",
-                body: JSON.stringify(SalesObj),
+                body: JSON.stringify(salesObj),
             })
                 .then(function (response) {
                     return response.json();

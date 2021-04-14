@@ -1,187 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link rel="icon" href="/assets/images/favicon.ico" />
     <script>
-        const absolutePath = "file:///android_asset/gui";
-        const appendAbsolutePath = 0;
-        const serverUrl = "http://localhost:9000/";
+      const absolutePath = "file:///android_asset/gui";
+      const appendAbsolutePath = 0;
+      const serverUrl = "http://localhost:9000/";
     </script>
     <script src="/assets/js/init-page.js"></script>
-</head>
+  </head>
 
-<body id="body" class="bg-my-light vh-100 d-flex flex-column">
+  <body id="body" class="bg-my-light vh-100 d-flex flex-column">
     <!--    <script src="/assets/js/header.js"></script>-->
 
     <div class="container">
-        <!-- page content -->
+      <!-- page content -->
 
-        <nav aria-label="breadcrumb text-dark">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="sales_home.html" class="text-dark"><i class="fas fa-shopping-cart mr-2 mt-1"></i>Sales</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                    Add
-                </li>
-            </ol>
-        </nav>
+      <nav aria-label="breadcrumb text-dark">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="sales_home.html" class="text-dark"
+              ><i class="fas fa-shopping-cart mr-2 mt-1"></i>Sales</a
+            >
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Add</li>
+        </ol>
+      </nav>
 
-        <form id="supplierAddForm" class="row g-3 needs-validation">
-            <div class="row g-2 mb-2">
-                <div class="col-md-8">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <div class="d-flex">
-                                <div class="me-auto">Customer</div>
-                                <div class="">
-                                    <button type="button" class="btn btn-outline-primary btn-sm"
-                                        onclick="searchCustomer()">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                                <div class="ml-1">
-                                    <button type="button" class="btn btn-outline-primary btn-sm"
-                                        onclick="addNewSupplier()">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <dl class="row">
-                                <dt class="col-md-2">Id</dt>
-                                <dd class="col-md-4">
-                                    <div id="customerId">
-                                        Please select a customer
-                                    </div>
-                                </dd>
-                                <dt class="col-md-2">Company</dt>
-                                <dd class="col-md-4">
-                                    <div id="customerCompany">
-                                        Please select a customer
-                                    </div>
-                                </dd>
-                                <dt class="col-md-2">Name</dt>
-                                <dd class="col-md-4">
-                                    <div id="customerName">
-                                        Please select a customer
-                                    </div>
-                                </dd>
-                                <dt class="col-md-2">City</dt>
-                                <dd class="col-md-4">
-                                    <div id="customerCity">
-                                        Please select a customer
-                                    </div>
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex">
-                                <div class="me-auto">Item</div>
-                                <div class="">
-                                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="searchItem()">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div id="selectedItems" class="row g-2 mb-2">
-                                <dl class="row">
-                                    <dt class="col-sm-4">Name</dt>
-                                    <dd class="col-sm-8" id="itemName"></dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-sm-4">Barcode
-                                    </dt>
-                                    <dd class="col-sm-8" id="itemBarcode"></dd>
-                                </dl>
-                                <dl class="row">
-                                    <dt class="col-sm-4">Quantity on hand
-                                    </dt>
-                                    <dd class="col-sm-8" id="itemQuantity"></dd>
-                                </dl>
-                            </div>
-                            <div class="col-sm">
-                                <div class="form-floating">
-                                    <input type="text" id="itemSalesQuantity" class="form-control" placeholder="name"
-                                        required />
-                                    <label for="itemSalesQuantity">Sales Quantity</label>
-                                    <div class="invalid-feedback">Invalid field.</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-grid gap-2 col-6 mx-auto mt-0 mb-3">
-                            <a id="btnAdd" onclick="addItem();" class="btn btn-primary shadow mt-3"><i
-                                    class="fas fa-plus mr-2"></i>Add</a>
-                        </div>
-                    </div>
+      <form id="supplierAddForm" class="row g-3 needs-validation" onsubmit="return false;">
+        <div class="row g-2 mb-2">
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <div class="card-header">
+                <div class="d-flex">
+                  <div class="me-auto">Customer</div>
+                  <div class="">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-sm"
+                      onclick="searchCustomer()"
+                    >
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                  <div class="ml-1">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-sm"
+                      onclick="addNewSupplier()"
+                    >
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
                 </div>
-                <!-- items panel -->
-
-                <!-- end items panel -->
+              </div>
+              <div class="card-body">
+                <dl class="row">
+                  <dt class="col-md-2">Id</dt>
+                  <dd class="col-md-4">
+                    <div id="customerId">Please select a customer</div>
+                  </dd>
+                  <dt class="col-md-2">Company</dt>
+                  <dd class="col-md-4">
+                    <div id="customerCompany">Please select a customer</div>
+                  </dd>
+                  <dt class="col-md-2">Name</dt>
+                  <dd class="col-md-4">
+                    <div id="customerName">Please select a customer</div>
+                  </dd>
+                  <dt class="col-md-2">City</dt>
+                  <dd class="col-md-4">
+                    <div id="customerCity">Please select a customer</div>
+                  </dd>
+                </dl>
+              </div>
             </div>
-            <div id="summaryPanel" class="col-md-4 d-none">
-                <!-- Start summary panel -->
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex">
-                            <div id="selectedCustomerName" class="me-auto">
-                                Name:
-                            </div>
-                            <div id="selectedCustomerCompany" class="">
-                                Company:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="accordion accordion-flush" id="accordionItems"></div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex">
-                            <div id="totalSales"></div>
-                        </div>
-                    </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="d-flex">
+                  <div class="me-auto">Item</div>
+                  <div class="">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary btn-sm"
+                      onclick="searchItem()"
+                    >
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
                 </div>
-                <div class="d-grid">
-                    <a id="btnAdd" onclick="save();" class="btn btn-primary shadow mt-3"><i
-                            class="fas fa-save mr-2"></i>Save</a>
+              </div>
+              <div class="card-body">
+                <div id="selectedItems" class="row g-2 mb-2">
+                  <dl class="row">
+                    <dt class="col-sm-4">Name</dt>
+                    <dd class="col-sm-8" id="itemName"></dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-4">Barcode</dt>
+                    <dd class="col-sm-8" id="itemBarcode"></dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-4">Quantity on hand</dt>
+                    <dd class="col-sm-8" id="itemQuantity"></dd>
+                  </dl>
                 </div>
-
-                <!-- end summary panel -->
+                <div class="col-sm">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      id="itemSalesQuantity"
+                      class="form-control"
+                      placeholder="name"
+                      required
+                    />
+                    <label for="itemSalesQuantity">Sales Quantity</label>
+                    <div class="invalid-feedback">Invalid field.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-grid gap-2 col-6 mx-auto mt-0 mb-3">
+                <a
+                  id="btnAdd"
+                  onclick="addItem();"
+                  class="btn btn-primary shadow mt-3"
+                  ><i class="fas fa-plus mr-2"></i>Add</a
+                >
+              </div>
             </div>
-    </div>
+          </div>
+          <!-- items panel -->
 
-    <div class="d-flex justify-content-center p-0 m-0">
-        <div id="myToast" class="toast d-flex align-items-center bg-danger text-white" role="alert"
-            aria-live="assertive" aria-atomic="true">
-            <div id="myToastBody" class="toast-body"></div>
-            <button type="button" class="btn-close btn-close-white ms-auto me-2" data-bs-dismiss="toast"
-                aria-label="Close"></button>
+          <!-- end items panel -->
+
+          <div id="summaryPanel" class="col-md-4 d-none">
+            <!-- Start summary panel -->
+            <div class="card">
+              <div class="card-header">
+                <div class="d-flex">
+                  <div id="selectedCustomerName" class="me-auto">Name:</div>
+                  <div id="selectedCustomerCompany" class="">Company:</div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div
+                  class="accordion accordion-flush"
+                  id="accordionItems"
+                ></div>
+              </div>
+              <div class="card-footer">
+                <div class="d-flex">
+                  <div id="totalSales"></div>
+                </div>
+              </div>
+            </div>
+            <div class="d-grid">
+              <a
+                id="btnAdd"
+                onclick="save();"
+                class="btn btn-primary shadow mt-3"
+                ><i class="fas fa-save mr-2"></i>Save</a
+              >
+            </div>
+
+            <!-- end summary panel -->
+          </div>
         </div>
-    </div>
-    </form>
+      </form>
     </div>
 
     <!--    <script src="/assets/js/footer.js"></script>-->
     <script>
-        // window.addEventListener("load", function () { });
-        var salesScript = [
-            "/assets/js/pos-api/customer/customer.js",
-            "/assets/js/pos-api/item/item.js",
-            "/assets/js/pos-api/sales/sales.js",
-            "/assets/js/pos-api/sales/sales.add.js",
-        ];
-        generateScript(salesScript);
+      // window.addEventListener("load", function () { });
+      var salesScript = [
+        "/assets/js/pos-api/customer/customer.js",
+        "/assets/js/pos-api/item/item.js",
+        "/assets/js/pos-api/sales/sales.js",
+        "/assets/js/pos-api/sales/sales.add.js",
+      ];
+      generateScript(salesScript);
     </script>
-</body>
-
+  </body>
 </html>
