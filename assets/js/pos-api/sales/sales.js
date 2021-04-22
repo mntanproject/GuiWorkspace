@@ -1,11 +1,11 @@
-function MnSales(mnId, mnTotal, mnCreatedOn, mnItems, mnSupplier) {
+function MnSales(mnId, mnTotal, mnCreatedOn, mnItems, mnCustomer) {
     if (mnId != "") {
         this.id = mnId;
     }
     this.total = mnTotal;
-    this.createdOn = mnCreatedOn;
+    this.date = mnCreatedOn;
     this.items = mnItems;
-    this.supplier = mnSupplier;
+    this.customerId = mnCustomer.id;
 }
 
 MnSales.fromJson = function (json) {
@@ -14,9 +14,9 @@ MnSales.fromJson = function (json) {
     var sales = new MnSales(
         obj.id,
         obj.total,
-        obj.createdOn,
+        obj.date,
         obj.items,
-        obj.supplier
+        obj.customerId
     );
     return sales;
 };
